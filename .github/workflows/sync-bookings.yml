@@ -21,9 +21,73 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Fetch calendar
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch calendar events via Google Calendar API
+        env:
+          CALENDAR_ID: ${{ secrets.POHARA_CALENDAR_ID }}
+          ACCESS_TOKEN: ${{ secrets.POHARA_GCAL_TOKEN }}
         run: |
-          curl -s -L "${{ secrets.POHARA_ICAL_URL }}" -o assets/bookings.ics
+          # Fetch events from Google Calendar API (avoids iCal caching)
+          curl -s -H "Authorization: Bearer $ACCESS_TOKEN" \
+            "https://www.googleapis.com/calendar/v3/calendars/$CALENDAR_ID/events?singleEvents=true&orderBy=startTime&timeMin=$(date -d '+1 year' +%Y)-01-01T00:00:00Z&timeMax=$(date -d '+1 year' +%Y)-12-31T23:59:59Z" \
+            -o events.json
+
+          # Check if there are any events
+          if [ "$(jq -r '.items | length' events.json)" -eq 0 ]; then
+            echo "No bookings found - using empty calendar"
+            cat > assets/bookings.ics << 'EOF'
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Pohara Beach//Bookings//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+END:VCALENDAR
+EOF
+          else
+            echo "Converting to iCal format..."
+            # Extract event dates and convert to iCal
+            python3 << 'PYEOF'
+import json
+from datetime import datetime
+
+with open('events.json') as f:
+    data = json.load(f)
+
+events = data.get('items', [])
+output = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Pohara Beach//Bookings//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"]
+
+for ev in events:
+    start = ev.get('start', {}).get('date') or ev.get('start', {}).get('dateTime', '')[:10]
+    end = ev.get('end', {}).get('date') or ev.get('end', {}).get('dateTime', '')[:10]
+    if end and start:
+        # Adjust end date (iCal end is exclusive)
+        try:
+            from datetime import datetime, timedelta
+            end_dt = datetime.strptime(end, '%Y-%m-%d') - timedelta(days=1)
+            end = end_dt.strftime('%Y-%m-%d')
+        except:
+            pass
+    summary = ev.get('summary', 'Booked')
+    output.extend([
+        "BEGIN:VEVENT",
+        f"DTSTART;VALUE=DATE:{start.replace('-','')}",
+        f"DTEND;VALUE=DATE:{end.replace('-','')}" if end else f"DTSTART;VALUE=DATE:{start.replace('-','')}",
+        f"SUMMARY:{summary}",
+        "END:VEVENT"
+    ])
+
+output.append("END:VCALENDAR")
+
+with open('assets/bookings.ics', 'w') as f:
+    f.write('\n'.join(output) + '\n')
+
+print(f"Generated iCal with {len(events)} events")
+PYEOF
+          fi
 
       - name: Commit if changed
         run: |
