@@ -1,0 +1,26 @@
+name: Sync Booking Calendar
+
+on:
+  schedule:
+    # Every 15 minutes
+    - cron: '*/15 * * * *'
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch calendar
+        run: |
+          curl -s -L "${{ secrets.POHARA_ICAL_URL }}" -o assets/bookings.ics
+
+      - name: Commit if changed
+        run: |
+          git config user.name "oc-bot"
+          git config user.email "oc@openclaw.ai"
+          git add assets/bookings.ics
+          git diff --quiet --cached || git commit -m "Sync bookings calendar $(date '+%Y-%m-%d %H:%M')"
+          git push
