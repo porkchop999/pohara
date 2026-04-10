@@ -1471,7 +1471,7 @@
         var dateStr = calYear + '-' + String(calMonth + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
         if (bookedDates.includes(dateStr)) {
           el.classList.add('booked');
-          console.log('Marking day', d, 'as booked, dateStr:', dateStr);
+          // debug
         } else {
           el.onclick = function(dt) { return function() { selectDate(dt); }; }(dateStr);
         }
