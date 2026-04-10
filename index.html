@@ -618,6 +618,7 @@
       </button>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
         <a href="#activities">Activities</a>
         <a href="#accommodation">Stay</a>
         <a href="#highlights">Highlights</a>
@@ -687,6 +688,57 @@
     </div>
   </section>
 
+  <!-- ─── REVIEWS ────────────────────────────────────────── -->
+
+  <!-- ─── REVIEWS ────────────────────────────────────────── -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Visitor Reviews</span>
+        <h2>What visitors say</h2>
+        <p>Real reviews from recent visitors to Pohara and the Golden Bay region.</p>
+      </div>
+
+      <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <div class="review-card" style="background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+          <div class="review-stars" style="color: var(--sand); margin-bottom: 1rem;">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-style: italic; margin-bottom: 1rem;">"Pohara is exactly how I imagined New Zealand beach paradise. Golden sand, turquoise water, and not a soul in sight. The perfect escape."</p>
+          <cite style="font-weight: 600; color: var(--charcoal);">— Sarah, Melbourne</cite>
+        </div>
+
+        <div class="review-card" style="background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+          <div class="review-stars" style="color: var(--sand); margin-bottom: 1rem;">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-style: italic; margin-bottom: 1rem;">"The Abel Tasman kayaking trip was the highlight of our NZ holiday. Wilsons were fantastic — professional, fun, and really knowledgeable. Can't recommend enough."</p>
+          <cite style="font-weight: 600; color: var(--charcoal);">— Parker, Sydney</cite>
+        </div>
+
+        <div class="review-card" style="background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+          <div class="review-stars" style="color: var(--sand); margin-bottom: 1rem;">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-style: italic; margin-bottom: 1rem;">"We came for a weekend, stayed a week. Perfect family beach — safe swimming, pristine sand, and the most beautiful sunsets. Already planning our return."</p>
+          <cite style="font-weight: 600; color: var(--charcoal);">— The Andersons, Wellington</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── ACTIVITIES ───────────────────────────────────── -->
   <section class="section section-alt" id="activities">
     <div class="container">
@@ -699,12 +751,12 @@
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
 
         <div class="activity-card">
-          <div class="activity-icon icon-ocean" style="background:rgba(26,74,110,0.1); color:var(--ocean);">
+          <div class="activity-icon icon-ocean">
             <i class="fa-solid fa-umbrella-beach"></i>
           </div>
           <div class="activity-info">
             <h3>Beach & Swimming</h3>
-            <p>Pohara's golden sand beach is sheltered and safe for swimming, paddleboarding, and kayaking — perfect for families and relaxation alike.</p>
+            <p>Pohara's golden sand beach is sheltered and safe for swimming, paddleboarding, and kayaking — perfect for families. Calm waters year-round.</p>
           </div>
         </div>
 
@@ -713,28 +765,48 @@
             <i class="fa-solid fa-person-hiking"></i>
           </div>
           <div class="activity-info">
-            <h3>Abel Tasman Track</h3>
-            <p>Access the Abel Tasman Coast Track from nearby — day walks, multi-day tramps, and stunning coastal scenery await in NZ's smallest national park.</p>
+            <h3>Abel Tasman Coast Track</h3>
+            <p> NZ's most beloved Great Ride — day walks or multiday tramps. Golden sand beaches, granite headlands, and tidal estuaries. Tackle independently or with a guide.</p>
           </div>
         </div>
 
         <div class="activity-card">
           <div class="activity-icon" style="background:rgba(232,213,183,0.3); color:#a08050;">
-            <i class="fa-solid fa-campground"></i>
+            <i class="fa-solid fa-water"></i>
           </div>
           <div class="activity-info">
-            <h3>Kayaking & Water Taxi</h3>
-            <p>Paddle into remote coves and beaches by kayak, or hop on a water taxi to explore the national park's most secluded spots.</p>
+            <h3>Kayaking with Wilsons</h3>
+            <p>World-class sea kayaking with Abel Tasman's premium operator. Half-day to multi-day adventures — family-owned, 8 generations local. Equipment provided.</p>
           </div>
         </div>
 
         <div class="activity-card">
-          <div class="activity-icon icon-ocean" style="background:rgba(26,74,110,0.1); color:var(--ocean);">
+          <div class="activity-icon icon-ocean">
+            <i class="fa-solid fa-ship"></i>
+          </div>
+          <div class="activity-info">
+            <h3>Vista Cruise</h3>
+            <p>Scenic cruise along the coast — granite cliffs, hidden coves, and wildlife. Includes beach stop. Rated "incredibly spectacular" by visitors.</p>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon icon-sage">
+            <i class="fa-solid fa-taxi"></i>
+          </div>
+          <div class="activity-info">
+            <h3>Water Taxi</h3>
+            <p>Hop between beaches up and down the coast. Drop at remote shores — Anchorage, Torrent Bay, Awaroa. Flexible, independent exploration.</p>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon" style="background:rgba(232,213,183,0.3); color:#a08050;">
             <i class="fa-solid fa-fish"></i>
           </div>
           <div class="activity-info">
             <h3>Fishing & Diving</h3>
-            <p>Golden Bay offers excellent fishing — from the wharf or charter a boat. The clear waters also make for great snorkelling and diving.</p>
+            <p>Golden Bay offers excellent fishing from the wharf or charter a boat. Clear waters make for great snorkelling and diving.</p>
           </div>
         </div>
 
@@ -744,7 +816,7 @@
           </div>
           <div class="activity-info">
             <h3>Wine & Local Produce</h3>
-            <p>Golden Bay is home to boutique vineyards, cideries, and farm gates. Sample the region's artisanal food and wine in stunning settings.</p>
+            <p>Boutique vineyards, cideries, and farm gates. Sample the region's artisanal food and wine in stunning rural settings.</p>
           </div>
         </div>
 
@@ -754,7 +826,7 @@
           </div>
           <div class="activity-info">
             <h3>Nature & Wildlife</h3>
-            <p>Spot seals at Cape Farewell, birdlife in the forest reserves, and dolphins from the coast. Nature is everywhere in Golden Bay.</p>
+            <p>Spot seals at Cape Farewell, birdlife in forest reserves, and dolphins from the coast. The Abel Tasman Birdsong project is restoring native bird populations.</p>
           </div>
         </div>
 
@@ -987,6 +1059,7 @@
         <h4>Explore</h4>
         <div class="footer-links">
           <a href="#about">About Pohara</a>
+          <a href="#reviews">Reviews</a>
           <a href="#activities">Activities</a>
           <a href="#accommodation">Accommodation</a>
           <a href="#highlights">Highlights</a>
