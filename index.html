@@ -214,9 +214,23 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(26,74,110,0.45) 0%, rgba(26,74,110,0.6) 100%),
-        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80') center/cover no-repeat;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(26,74,110,0.45) 0%, rgba(26,74,110,0.6) 100%);
     }
 
     .hero-content {
@@ -602,7 +616,13 @@
 
   <!-- ─── HERO ────────────────────────────────────────── -->
   <section class="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg">
+      <div class="hero-slide active" style="background-image: url('assets/photos/beach-optimised.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&q=80')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=80')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1439405326854-014607f694d7?w=1800&q=80')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1504951497896-6028e41e5e2e?w=1800&q=80')"></div>
+    </div>
     <div class="hero-content">
       <div class="hero-badge">Golden Bay, New Zealand</div>
       <h1>Welcome to Pohara</h1>
@@ -1006,6 +1026,17 @@
         toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
       });
     });
+  // ─── Hero Slideshow ────────────────────────────────
+    (function () {
+      var slides = document.querySelectorAll('.hero-slide');
+      if (!slides.length) return;
+      var current = 0;
+      setInterval(function () {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 5000);
+    })();
   </script>
 
 </body>
