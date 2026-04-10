@@ -1029,17 +1029,22 @@
       });
     });
   // ─── Hero Slideshow ────────────────────────────────
-    (function () {
+    document.addEventListener('DOMContentLoaded', function() {
       var slides = document.querySelectorAll('.hero-slide');
-      if (!slides.length) return;
+      if (!slides.length) {
+        console.log('No slides found');
+        return;
+      }
       var current = 0;
+      console.log('Hero carousel initialized with ' + slides.length + ' slides');
       setInterval(function () {
         slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
+        setTimeout(function() {
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('active');
+        }, 100);
       }, 5000);
-      console.log('Hero carousel initialized with ' + slides.length + ' slides');
-    })();
+    });
   </script>
 
 </body>
