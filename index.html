@@ -1368,6 +1368,7 @@
         bookedDates = parseICalBookings(icalText);
         // Deduplicate — safety net in case of malformed .ics
         bookedDates = [...new Set(bookedDates)];
+        console.log('Parsed bookings:', bookedDates.length, bookedDates);
         renderCal();
       })
       .catch(err => {
