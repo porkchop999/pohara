@@ -1362,7 +1362,7 @@
     var bookedDates = [];
     
     // Fetch bookings from Google Calendar iCal
-    fetch('https://calendar.google.com/calendar/ical/85f4435f87af6bd79021b02b1a88f72069cc42b7a9e8c113e06ff2edebb28f1f@group.calendar.google.com/public.ics')
+    fetch('https://calendar.google.com/calendar/ical/85f4435f87af6bd79021b02b1a88f72069cc42b7ae8c1113e06ff2edebb28f1f@group.calendar.google.com/public.ics')
       .then(res => res.text())
       .then(icalText => {
         bookedDates = parseICalBookings(icalText);
