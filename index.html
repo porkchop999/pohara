@@ -1362,10 +1362,12 @@
     var bookedDates = [];
     
     // Fetch bookings from Google Calendar iCal
-    fetch('assets/bookings.ics')
+    fetch('assets/bookings.ics?v=' + Date.now())
       .then(res => res.text())
       .then(icalText => {
         bookedDates = parseICalBookings(icalText);
+        // Deduplicate — safety net in case of malformed .ics
+        bookedDates = [...new Set(bookedDates)];
         renderCal();
       })
       .catch(err => {
