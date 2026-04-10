@@ -1377,20 +1377,53 @@
       var dates = [];
       var lines = icalText.split('\n');
       var inEvent = false;
-      var currentDTSTART = '';
-      
+      var eventStart = '';
+      var eventEnd = '';
+      var rrule = '';
+
       for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
         if (line === 'BEGIN:VEVENT') {
           inEvent = true;
-          currentDTSTART = '';
+          eventStart = '';
+          eventEnd = '';
+          rrule = '';
         } else if (line === 'END:VEVENT') {
           inEvent = false;
-        } else if (inEvent && line.startsWith('DTSTART')) {
-          var parts = line.split(':');
-          if (parts[1]) {
-            var dt = parts[1].replace('T', '-').substring(0, 10);
-            if (!dates.includes(dt)) dates.push(dt);
+          if (rrule && eventStart) {
+            // Expand recurring event
+            var untilMatch = rrule.match(/UNTIL=(\d{8})/);
+            if (untilMatch) {
+              var until = untilMatch[1]; // YYYYMMDD
+              var cur = eventStart; // YYYY-MM-DD
+              var untilStr = until.substring(0,4) + '-' + until.substring(4,6) + '-' + until.substring(6,8);
+              while (cur <= untilStr) {
+                if (!dates.includes(cur)) dates.push(cur);
+                // Increment by 1 day
+                var d = new Date(cur + 'T12:00:00Z');
+                d.setUTCDate(d.getUTCDate() + 1);
+                cur = d.toISOString().substring(0, 10);
+              }
+            }
+          } else if (eventStart) {
+            // Single event
+            if (!dates.includes(eventStart)) dates.push(eventStart);
+          }
+        } else if (inEvent) {
+          if (line.startsWith('DTSTART')) {
+            var parts = line.split(':');
+            if (parts[1]) {
+              var raw = parts[1].replace(/[^0-9]/g, '').substring(0, 8);
+              eventStart = raw.substring(0,4) + '-' + raw.substring(4,6) + '-' + raw.substring(6,8);
+            }
+          } else if (line.startsWith('DTEND')) {
+            var parts = line.split(':');
+            if (parts[1]) {
+              var raw = parts[1].replace(/[^0-9]/g, '').substring(0, 8);
+              eventEnd = raw.substring(0,4) + '-' + raw.substring(4,6) + '-' + raw.substring(6,8);
+            }
+          } else if (line.startsWith('RRULE') || line.startsWith(' ')) {
+            rrule += ' ' + line;
           }
         }
       }
