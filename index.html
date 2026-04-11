@@ -1379,12 +1379,61 @@
       });
     
     function parseICalBookings(icalText) {
-      var dates = [];
-      var lines = icalText.split('\n');
+      var dates = new Set();
+      var lines = icalText.replace(/\r\n/g, '\n').split('\n');
       var inEvent = false;
       var eventStart = '';
       var eventEnd = '';
       var rrule = '';
+      var exdates = [];
+
+      function parseICalDate(value) {
+        if (!value) return '';
+        var raw = value.replace(/[^0-9]/g, '').substring(0, 8);
+        if (raw.length !== 8) return '';
+        return raw.substring(0,4) + '-' + raw.substring(4,6) + '-' + raw.substring(6,8);
+      }
+
+      function addDate(dateStr) {
+        if (dateStr) dates.add(dateStr);
+      }
+
+      function addDateRange(startStr, endStr) {
+        if (!startStr || !endStr || endStr < startStr) {
+          addDate(startStr);
+          return;
+        }
+        var cur = startStr;
+        while (cur <= endStr) {
+          dates.add(cur);
+          var d = new Date(cur + 'T12:00:00Z');
+          d.setUTCDate(d.getUTCDate() + 1);
+          cur = d.toISOString().substring(0, 10);
+        }
+      }
+
+      function finalizeEvent() {
+        if (!eventStart) return;
+
+        if (rrule) {
+          var untilMatch = rrule.match(/UNTIL=(\d{8})/);
+          if (untilMatch) {
+            addDateRange(eventStart, parseICalDate(untilMatch[1]));
+          } else {
+            addDate(eventStart);
+          }
+          exdates.forEach(function(exdate) {
+            dates.delete(exdate);
+          });
+          return;
+        }
+
+        if (eventEnd) {
+          addDateRange(eventStart, eventEnd);
+        } else {
+          addDate(eventStart);
+        }
+      }
 
       for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
@@ -1393,46 +1442,31 @@
           eventStart = '';
           eventEnd = '';
           rrule = '';
+          exdates = [];
         } else if (line === 'END:VEVENT') {
+          finalizeEvent();
           inEvent = false;
-          if (rrule && eventStart) {
-            // Expand recurring event
-            var untilMatch = rrule.match(/UNTIL=(\d{8})/);
-            if (untilMatch) {
-              var until = untilMatch[1]; // YYYYMMDD
-              var cur = eventStart; // YYYY-MM-DD
-              var untilStr = until.substring(0,4) + '-' + until.substring(4,6) + '-' + until.substring(6,8);
-              while (cur <= untilStr) {
-                if (!dates.includes(cur)) dates.push(cur);
-                // Increment by 1 day
-                var d = new Date(cur + 'T12:00:00Z');
-                d.setUTCDate(d.getUTCDate() + 1);
-                cur = d.toISOString().substring(0, 10);
-              }
-            }
-          } else if (eventStart) {
-            // Single event
-            if (!dates.includes(eventStart)) dates.push(eventStart);
-          }
         } else if (inEvent) {
           if (line.startsWith('DTSTART')) {
-            var parts = line.split(':');
-            if (parts[1]) {
-              var raw = parts[1].replace(/[^0-9]/g, '').substring(0, 8);
-              eventStart = raw.substring(0,4) + '-' + raw.substring(4,6) + '-' + raw.substring(6,8);
-            }
+            var startParts = line.split(':');
+            if (startParts[1]) eventStart = parseICalDate(startParts[1]);
           } else if (line.startsWith('DTEND')) {
-            var parts = line.split(':');
-            if (parts[1]) {
-              var raw = parts[1].replace(/[^0-9]/g, '').substring(0, 8);
-              eventEnd = raw.substring(0,4) + '-' + raw.substring(4,6) + '-' + raw.substring(6,8);
+            var endParts = line.split(':');
+            if (endParts[1]) eventEnd = parseICalDate(endParts[1]);
+          } else if (line.startsWith('EXDATE')) {
+            var exdateParts = line.split(':');
+            if (exdateParts[1]) {
+              exdateParts[1].split(',').forEach(function(value) {
+                var exdate = parseICalDate(value);
+                if (exdate) exdates.push(exdate);
+              });
             }
-          } else if (line.startsWith('RRULE') || line.startsWith(' ')) {
+          } else if (line.startsWith('RRULE') || (rrule && line.startsWith(' '))) {
             rrule += ' ' + line;
           }
         }
       }
-      return dates;
+      return Array.from(dates).sort();
     }
 
     function initCal() {
