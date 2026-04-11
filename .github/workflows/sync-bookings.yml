@@ -25,7 +25,12 @@ jobs:
           ICAL_URL: ${{ secrets.POHARA_ICAL_URL }}
         run: |
           test -n "$ICAL_URL"
-          curl -fsSL "$ICAL_URL" -o assets/bookings-live.ics
+          if [[ "$ICAL_URL" == *\?* ]]; then
+            FETCH_URL="$ICAL_URL&nocache=$(date +%s)"
+          else
+            FETCH_URL="$ICAL_URL?nocache=$(date +%s)"
+          fi
+          curl -fsSL -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' "$FETCH_URL" -o assets/bookings-live.ics
           test -s assets/bookings-live.ics
 
       - name: Commit if changed
