@@ -2,9 +2,8 @@ name: Sync Booking Calendar
 
 on:
   schedule:
-    # Every 15 minutes
     - cron: '*/15 * * * *'
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -21,67 +20,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Fetch calendar events via Google Calendar API
+      - name: Fetch private iCal feed
         env:
-          CALENDAR_ID: ${{ secrets.POHARA_CALENDAR_ID }}
-          ACCESS_TOKEN: ${{ secrets.POHARA_GCAL_TOKEN }}
+          ICAL_URL: ${{ secrets.POHARA_ICAL_URL }}
         run: |
-          TIME_MIN=$(date -u -d 'yesterday' +%Y-%m-%dT00:00:00Z)
-          TIME_MAX=$(date -u -d '+365 days' +%Y-%m-%dT23:59:59Z)
-
-          echo "Fetching bookings from $TIME_MIN to $TIME_MAX"
-          curl -s -H "Authorization: Bearer $ACCESS_TOKEN" \
-            "https://www.googleapis.com/calendar/v3/calendars/$CALENDAR_ID/events?singleEvents=true&orderBy=startTime&timeMin=$TIME_MIN&timeMax=$TIME_MAX" \
-            -o events.json
-
-          if [ "$(jq -r '.items | length' events.json)" -eq 0 ]; then
-            echo "No bookings found - using empty calendar"
-            cat > assets/bookings-live.ics << 'EOF'
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Pohara Beach//Bookings//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-END:VCALENDAR
-EOF
-          else
-            echo "Converting to iCal format..."
-            python3 << 'PYEOF'
-import json
-
-with open('events.json') as f:
-    data = json.load(f)
-
-events = data.get('items', [])
-output = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Pohara Beach//Bookings//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"]
-
-for ev in events:
-    start = ev.get('start', {}).get('date') or ev.get('start', {}).get('dateTime', '')[:10]
-    end = ev.get('end', {}).get('date') or ev.get('end', {}).get('dateTime', '')[:10]
-    summary = ev.get('summary', 'Booked')
-    if not start:
-        continue
-    output.extend([
-        "BEGIN:VEVENT",
-        f"DTSTART;VALUE=DATE:{start.replace('-','')}",
-        f"DTEND;VALUE=DATE:{end.replace('-','')}" if end else None,
-        f"SUMMARY:{summary}",
-        "END:VEVENT"
-    ])
-
-output.append("END:VCALENDAR")
-
-with open('assets/bookings-live.ics', 'w') as f:
-    f.write('\n'.join(line for line in output if line) + '\n')
-
-print(f"Generated iCal with {len(events)} events")
-PYEOF
-          fi
+          test -n "$ICAL_URL"
+          curl -fsSL "$ICAL_URL" -o assets/bookings-live.ics
+          test -s assets/bookings-live.ics
 
       - name: Commit if changed
         run: |
