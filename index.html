@@ -669,10 +669,11 @@
     }
     .cal-day.empty { cursor: default; }
     .cal-day.booked {
-      color: var(--stone);
-      text-decoration: line-through;
+      background: rgba(122,158,126,0.18);
+      border: 2px solid rgba(122,158,126,0.45);
+      color: var(--charcoal);
+      font-weight: 700;
       cursor: not-allowed;
-      opacity: 0.4;
     }
     .cal-day.selected {
       background: var(--ocean) !important;
@@ -697,8 +698,19 @@
       font-size: 0.75rem;
       color: var(--stone);
     }
+    .cal-status {
+      margin-top: 1rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--cream);
+      font-size: 0.85rem;
+      color: var(--stone);
+      min-height: 1.5rem;
+    }
+    .cal-status.loading { color: var(--ocean); }
+    .cal-status.error { color: #a94442; }
+    .cal-status.ok { color: var(--sage); }
     .fa-circle.available { font-size: 0.5rem; color: var(--sage); }
-    .fa-circle.booked { font-size: 0.5rem; color: var(--stone); opacity: 0.4; }
+    .fa-circle.booked { font-size: 0.5rem; color: var(--sage); }
     .fa-circle.selected { font-size: 0.5rem; color: var(--ocean); }
 
     /* ─── BOOKING FORM ────────────────────────────────── */
@@ -861,6 +873,7 @@
             <span><i class="fa-solid fa-circle booked"></i> Booked</span>
             <span><i class="fa-solid fa-circle selected"></i> Selected</span>
           </div>
+          <div class="cal-status loading" id="cal-status">Loading live calendar…</div>
         </div>
 
         <!-- Booking Form -->
@@ -1360,23 +1373,58 @@
     var calYear, calMonth;
     var checkin = '', checkout = '';
     var bookedDates = [];
-    
-    // Fetch bookings from Google Calendar iCal
-    fetch('assets/bookings-live.ics?v=' + Date.now())
-      .then(res => {
-        if (!res.ok) throw new Error('Network response not ok');
-        return res.text();
-      })
-      .then(icalText => {
-        bookedDates = parseICalBookings(icalText);
-        // Deduplicate — safety net in case of malformed .ics
-        bookedDates = [...new Set(bookedDates)];
+    var bookingFeedUrl = '';
+
+    function setCalendarStatus(message, state) {
+      var el = document.getElementById('cal-status');
+      if (!el) return;
+      el.textContent = message;
+      el.className = 'cal-status' + (state ? ' ' + state : '');
+    }
+
+    function formatBookedDateLabel(dateStr) {
+      var parts = dateStr.split('-');
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return parseInt(parts[2], 10) + ' ' + months[parseInt(parts[1], 10) - 1];
+    }
+
+    function summarizeBookedDates(limit) {
+      limit = limit || 6;
+      if (!bookedDates.length) return 'No booked dates currently listed.';
+      var labels = bookedDates.slice(0, limit).map(formatBookedDateLabel);
+      if (bookedDates.length > limit) labels.push('+' + (bookedDates.length - limit) + ' more');
+      return labels.join(', ');
+    }
+
+    function fetchCalendarFeed(url) {
+      var sep = url.indexOf('?') === -1 ? '?' : '&';
+      return fetch(url + sep + 'v=' + Date.now(), { cache: 'no-store' })
+        .then(function(res) {
+          if (!res.ok) throw new Error('Network response not ok');
+          return res.text();
+        });
+    }
+
+    function loadBookings() {
+      var sources = ['assets/bookings-live.ics', 'assets/bookings.ics'];
+      setCalendarStatus('Loading live calendar…', 'loading');
+
+      return sources.reduce(function(chain, source) {
+        return chain.catch(function() {
+          return fetchCalendarFeed(source).then(function(icalText) {
+            bookedDates = [...new Set(parseICalBookings(icalText))].sort();
+            bookingFeedUrl = source;
+            renderCal();
+            setCalendarStatus('Live calendar updated. Booked: ' + summarizeBookedDates() + '.', 'ok');
+          });
+        });
+      }, Promise.reject())
+      .catch(function(err) {
+        console.log('Could not load calendar feed', err);
         renderCal();
-      })
-      .catch(err => {
-        console.log('Could not load calendar, using offline dates');
-        renderCal();
+        setCalendarStatus('Live calendar unavailable right now. Please email to confirm availability.', 'error');
       });
+    }
     
     function parseICalBookings(icalText) {
       var dates = new Set();
@@ -1512,7 +1560,8 @@
         var dateStr = calYear + '-' + String(calMonth + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
         if (bookedDates.includes(dateStr)) {
           el.classList.add('booked');
-          // debug
+          el.title = 'Booked';
+          el.setAttribute('aria-label', dateStr + ' booked');
         } else {
           el.onclick = function(dt) { return function() { selectDate(dt); }; }(dateStr);
         }
@@ -1567,6 +1616,7 @@
     }
 
     initCal();
+    loadBookings();
   </script>
 
 </body>
