@@ -669,11 +669,13 @@
     }
     .cal-day.empty { cursor: default; }
     .cal-day.booked {
-      background: rgba(122,158,126,0.18);
-      border: 2px solid rgba(122,158,126,0.45);
-      color: var(--charcoal);
+      background: transparent;
+      border: none;
+      color: var(--stone);
       font-weight: 700;
+      text-decoration: line-through;
       cursor: not-allowed;
+      opacity: 0.45;
     }
     .cal-day.selected {
       background: var(--ocean) !important;
@@ -710,8 +712,21 @@
     .cal-status.error { color: #a94442; }
     .cal-status.ok { color: var(--sage); }
     .fa-circle.available { font-size: 0.5rem; color: var(--sage); }
-    .fa-circle.booked { font-size: 0.5rem; color: var(--sage); }
     .fa-circle.selected { font-size: 0.5rem; color: var(--ocean); }
+    .legend-day {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.1rem;
+      height: 1.1rem;
+      font-size: 0.7rem;
+      line-height: 1;
+    }
+    .legend-day.booked {
+      color: var(--stone);
+      text-decoration: line-through;
+      opacity: 0.45;
+    }
 
     /* ─── BOOKING FORM ────────────────────────────────── */
     .booking-form {
@@ -870,7 +885,7 @@
           <div class="cal-grid" id="cal-grid"></div>
           <div class="cal-legend">
             <span><i class="fa-solid fa-circle available"></i> Available</span>
-            <span><i class="fa-solid fa-circle booked"></i> Booked</span>
+            <span><span class="legend-day booked">15</span> Booked</span>
             <span><i class="fa-solid fa-circle selected"></i> Selected</span>
           </div>
           <div class="cal-status loading" id="cal-status">Loading live calendar…</div>
