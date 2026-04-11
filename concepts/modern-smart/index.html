@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pohara, Modern Concept</title>
+  <style>
+    :root {
+      --bg: #f5f4ef;
+      --panel: rgba(255,255,255,0.72);
+      --panel-solid: #fbfaf6;
+      --ink: #171b1d;
+      --muted: #5f6668;
+      --line: rgba(23,27,29,0.09);
+      --accent: #1d6a6d;
+      --accent-soft: rgba(29,106,109,0.14);
+      --sand: #ded5c7;
+      --shadow: 0 24px 80px -28px rgba(23,27,29,0.22);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1400px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: "Geist", "SF Pro Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.85), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(29,106,109,0.08), transparent 22%),
+        linear-gradient(180deg, #f7f5ef 0%, #f1eee7 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent 75%);
+      opacity: 0.35;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, .button {
+      font: inherit;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    }
+    button:active, .button:active { transform: translateY(1px) scale(0.985); }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 18px;
+      z-index: 20;
+      padding-top: 18px;
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.48);
+      backdrop-filter: blur(18px) saturate(135%);
+      -webkit-backdrop-filter: blur(18px) saturate(135%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 20px 50px -32px rgba(23,27,29,0.35);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(29,106,109,0.16), rgba(29,106,109,0.32));
+      border: 1px solid rgba(29,106,109,0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .brand-mark svg { width: 18px; height: 18px; }
+
+    .nav-links {
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a { position: relative; }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 1px;
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #f6f5f0;
+      box-shadow: 0 16px 32px -22px rgba(23,27,29,0.7);
+    }
+    .nav-cta:hover { transform: translateY(-1px); }
+
+    .hero {
+      min-height: calc(100dvh - 120px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 34px;
+      align-items: center;
+      padding: 48px 0 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.74);
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      width: fit-content;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(29,106,109,0.35);
+      animation: pulse 2.8s infinite;
+    }
+
+    .hero-copy h1 {
+      margin: 20px 0 18px;
+      font-size: clamp(3.4rem, 8vw, 7rem);
+      line-height: 0.94;
+      letter-spacing: -0.065em;
+      max-width: 10ch;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 58ch;
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button-primary,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 20px;
+      border-radius: 999px;
+      min-width: 170px;
+    }
+
+    .button-primary {
+      background: var(--ink);
+      color: #fbfaf6;
+      box-shadow: 0 22px 40px -24px rgba(23,27,29,0.8);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,0.6);
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .metric {
+      padding: 0 0 0 18px;
+      border-left: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.4rem;
+      letter-spacing: -0.05em;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 760px;
+    }
+
+    .hero-stage {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .photo-tall,
+    .glass-card,
+    .floating-note,
+    .data-ribbon {
+      position: absolute;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .photo-tall {
+      inset: 0 0 72px 92px;
+      background: #ddd;
+    }
+
+    .photo-tall img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+    }
+
+    .photo-tall::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12,15,16,0.06) 0%, rgba(12,15,16,0.36) 100%);
+    }
+
+    .glass-card {
+      top: 28px;
+      left: 0;
+      width: 290px;
+      padding: 22px;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(22px) saturate(135%);
+      -webkit-backdrop-filter: blur(22px) saturate(135%);
+      border: 1px solid rgba(255,255,255,0.42);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.62), 0 26px 60px -36px rgba(23,27,29,0.52);
+      animation: floatOne 7s ease-in-out infinite;
+    }
+
+    .card-kicker,
+    .mini-kicker,
+    .section-kicker {
+      font-size: 0.76rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .glass-card h2,
+    .section-title {
+      margin: 10px 0 0;
+      font-size: clamp(1.8rem, 3.2vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .glass-card p {
+      color: rgba(23,27,29,0.72);
+      line-height: 1.65;
+      margin: 12px 0 0;
+      font-size: 0.95rem;
+    }
+
+    .status-stack {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.32);
+    }
+
+    .status-row strong { font-size: 0.94rem; }
+    .status-row span { color: var(--muted); font-size: 0.85rem; }
+
+    .status-pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .status-icon {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.38);
+    }
+
+    .floating-note {
+      right: 14px;
+      bottom: 18px;
+      width: 240px;
+      padding: 18px;
+      background: #15191b;
+      color: #f5f3ed;
+      animation: floatTwo 8s ease-in-out infinite;
+    }
+
+    .floating-note p {
+      margin: 10px 0 0;
+      color: rgba(245,243,237,0.72);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .floating-note .line {
+      width: 48px;
+      height: 1px;
+      margin-top: 16px;
+      background: rgba(245,243,237,0.24);
+    }
+
+    .data-ribbon {
+      left: 44px;
+      bottom: 126px;
+      width: 320px;
+      padding: 18px;
+      background: rgba(251,250,246,0.82);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 28px 60px -40px rgba(23,27,29,0.62);
+      animation: floatThree 9s ease-in-out infinite;
+    }
+
+    .availability {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .availability-row {
+      display: grid;
+      grid-template-columns: 86px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .track {
+      position: relative;
+      height: 9px;
+      background: rgba(23,27,29,0.07);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .track span {
+      position: absolute;
+      inset: 0;
+      width: var(--fill, 60%);
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(29,106,109,0.45), rgba(29,106,109,0.88));
+    }
+
+    main section { padding: 28px 0 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 60ch;
+      justify-self: end;
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    .panel {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 20px 60px -38px rgba(23,27,29,0.28);
+      overflow: hidden;
+    }
+
+    .panel-inner { padding: 28px; }
+
+    .panel h3 {
+      margin: 10px 0 12px;
+      font-size: 1.6rem;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .experience-card {
+      min-height: 340px;
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 0;
+    }
+
+    .experience-photo {
+      position: relative;
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .experience-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.06);
+    }
+
+    .experience-copy {
+      display: grid;
+      align-content: space-between;
+      min-height: 100%;
+      padding: 30px;
+    }
+
+    .micro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .micro-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(255,255,255,0.52);
+    }
+
+    .micro-card strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .micro-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    .calendar-panel { min-height: 340px; }
+
+    .calendar-shell {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .calendar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .calendar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(29,106,109,0.08);
+      color: var(--accent);
+      font-size: 0.84rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 0.88rem;
+    }
+
+    .weekday {
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-bottom: 6px;
+    }
+
+    .day {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.54);
+      border: 1px solid rgba(23,27,29,0.05);
+      color: var(--ink);
+    }
+
+    .day.dim { color: rgba(23,27,29,0.35); }
+    .day.booked {
+      background: rgba(23,27,29,0.02);
+      color: rgba(23,27,29,0.45);
+      text-decoration: line-through;
+    }
+    .day.focus {
+      background: var(--accent);
+      color: #f7f5ef;
+      box-shadow: 0 16px 30px -20px rgba(29,106,109,0.65);
+    }
+
+    .calendar-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(23,27,29,0.08);
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-mark {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(23,27,29,0.05);
+      font-size: 0.72rem;
+    }
+
+    .legend-mark.booked {
+      text-decoration: line-through;
+      color: rgba(23,27,29,0.45);
+    }
+
+    .signal-panel .panel-inner { min-height: 300px; }
+
+    .signal-lines {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.46);
+      transform: translateY(16px);
+      opacity: 0;
+      animation: riseIn 0.7s forwards;
+    }
+
+    .signal-row:nth-child(2) { animation-delay: 0.12s; }
+    .signal-row:nth-child(3) { animation-delay: 0.24s; }
+    .signal-row:nth-child(4) { animation-delay: 0.36s; }
+
+    .signal-row span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .signal-row strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .signal-value {
+      font-size: 1.05rem;
+      letter-spacing: -0.04em;
+    }
+
+    .marquee-panel {
+      min-height: 220px;
+      background: #141819;
+      color: #f4f2ec;
+    }
+
+    .marquee-panel .panel-inner {
+      display: grid;
+      align-content: space-between;
+      min-height: 100%;
+    }
+
+    .marquee-track {
+      overflow: hidden;
+      margin-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 16px 0;
+    }
+
+    .marquee-inner {
+      display: inline-flex;
+      gap: 18px;
+      white-space: nowrap;
+      will-change: transform;
+      animation: marquee 18s linear infinite;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(244,242,236,0.86);
+      font-size: 0.86rem;
+    }
+
+    .chip i {
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      border-radius: 999px;
+      background: rgba(98,206,194,0.85);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .gallery-copy {
+      padding: 12px 0 0;
+    }
+
+    .gallery-copy .section-title { max-width: 8ch; }
+    .gallery-copy p {
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 52ch;
+      margin: 16px 0 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 18px;
+      min-height: 560px;
+    }
+
+    .gallery-large,
+    .gallery-small,
+    .text-slab {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-large img,
+    .gallery-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-large::after,
+    .gallery-small::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12,15,16,0.03), rgba(12,15,16,0.22));
+    }
+
+    .gallery-side {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 18px;
+    }
+
+    .text-slab {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.55);
+      padding: 24px;
+    }
+
+    .text-slab ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .text-slab li {
+      padding-top: 14px;
+      border-top: 1px solid rgba(23,27,29,0.08);
+    }
+
+    .text-slab strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.96rem;
+    }
+
+    .text-slab span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .cta {
+      padding: 34px 0 88px;
+    }
+
+    .cta-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      padding: 30px;
+      border-radius: calc(var(--radius-xl) + 4px);
+      background: linear-gradient(135deg, rgba(255,255,255,0.68), rgba(255,255,255,0.38));
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 26px 70px -44px rgba(23,27,29,0.35);
+    }
+
+    .cta-wrap p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 56ch;
+    }
+
+    .cta-actions {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(29,106,109,0.36); }
+      70% { box-shadow: 0 0 0 10px rgba(29,106,109,0); }
+      100% { box-shadow: 0 0 0 0 rgba(29,106,109,0); }
+    }
+
+    @keyframes floatOne {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -10px, 0); }
+    }
+
+    @keyframes floatTwo {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, 12px, 0); }
+    }
+
+    @keyframes floatThree {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -8px, 0); }
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes riseIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .section-head,
+      .bento,
+      .gallery,
+      .gallery-grid,
+      .experience-card,
+      .cta-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { min-height: auto; }
+      .hero-visual { min-height: 680px; }
+      .section-head p { justify-self: start; }
+      .cta-actions { justify-content: flex-start; }
+    }
+
+    @media (max-width: 820px) {
+      .shell { width: min(calc(100% - 24px), var(--max)); }
+      .nav {
+        grid-template-columns: 1fr;
+        border-radius: 28px;
+        justify-items: start;
+      }
+      .nav-links { justify-self: start; flex-wrap: wrap; }
+      .hero { padding-top: 26px; gap: 24px; }
+      .hero-copy h1 { font-size: clamp(2.8rem, 16vw, 4.8rem); }
+      .hero-meta,
+      .micro-grid,
+      .gallery-grid,
+      .calendar-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-visual { min-height: 560px; }
+      .photo-tall { inset: 76px 0 70px 0; }
+      .glass-card,
+      .data-ribbon,
+      .floating-note {
+        position: absolute;
+        width: auto;
+        left: 18px;
+        right: 18px;
+      }
+      .glass-card { top: 0; }
+      .data-ribbon { bottom: 120px; }
+      .floating-note { bottom: 0; }
+    }
+
+    @media (max-width: 620px) {
+      .hero-meta,
+      .micro-grid,
+      .gallery-grid,
+      .calendar-grid,
+      .cta-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+      .hero-visual { min-height: 620px; }
+      .metric { padding-left: 14px; }
+      .panel-inner,
+      .calendar-shell,
+      .experience-copy,
+      .cta-wrap,
+      .text-slab,
+      .floating-note,
+      .data-ribbon,
+      .glass-card { padding: 20px; }
+      .gallery-copy .section-title,
+      .hero-copy h1 { max-width: none; }
+      .availability-row { grid-template-columns: 72px 1fr auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell topbar">
+    <nav class="nav">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M3 15c3.4-4.2 6.8-6.3 10.2-6.3 3.1 0 5.7 1.7 7.8 5.1"></path>
+            <path d="M5 18h14"></path>
+          </svg>
+        </span>
+        <span>Pohara Beach House</span>
+      </a>
+      <div class="nav-links">
+        <a href="#concept">Concept</a>
+        <a href="#stay">Stay</a>
+        <a href="#flow">Booking</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+      <a class="nav-cta magnetic" href="#cta">Review concept</a>
+    </nav>
+  </div>
+
+  <header class="shell hero" id="top">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="pulse-dot"></span> Separate local design concept</span>
+      <h1>A sharper, calmer front door for Pohara.</h1>
+      <p>
+        This concept leans premium, coastal, and deliberate. The layout is more editorial than brochure-like,
+        with cleaner hierarchy, smarter motion, and a booking surface that feels intentional instead of decorative.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary magnetic" href="#concept">See the direction</a>
+        <a class="button button-secondary" href="#flow">Open booking concept</a>
+      </div>
+      <div class="hero-meta">
+        <div class="metric">
+          <strong>Quiet luxury</strong>
+          <span>Soft contrast, coastal neutrals, and one disciplined accent.</span>
+        </div>
+        <div class="metric">
+          <strong>Smarter flow</strong>
+          <span>Booking status becomes clearer, faster, and less fussy.</span>
+        </div>
+        <div class="metric">
+          <strong>Own imagery</strong>
+          <span>Built around Jamie’s actual photos rather than generic filler.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-stage" id="hero-stage">
+        <div class="photo-tall">
+          <img src="../../photos/hero.jpg" alt="" />
+        </div>
+
+        <div class="glass-card">
+          <div class="card-kicker">Arrival view</div>
+          <h2>Framed around the light, not clutter.</h2>
+          <p>
+            A more modern first impression, with fewer competing boxes and more confidence in spacing,
+            photography, and rhythm.
+          </p>
+          <div class="status-stack">
+            <div class="status-row">
+              <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16">
+                  <path d="M4 7h16"></path><path d="M7 3v8"></path><path d="M17 3v8"></path><rect x="4" y="5" width="16" height="15" rx="3"></rect>
+                </svg>
+              </div>
+              <div>
+                <strong>Calendar sync</strong>
+                <span>Live feed healthy and simplified</span>
+              </div>
+              <div class="status-pill">Updated</div>
+            </div>
+            <div class="status-row">
+              <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16">
+                  <path d="M4 12h16"></path><path d="M4 6h16"></path><path d="M4 18h10"></path>
+                </svg>
+              </div>
+              <div>
+                <strong>Content tone</strong>
+                <span>Sharper copy with cleaner information density</span>
+              </div>
+              <div class="status-pill">Refined</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-ribbon">
+          <div class="mini-kicker">Season rhythm</div>
+          <div class="availability">
+            <div class="availability-row">
+              <strong>April</strong>
+              <div class="track" style="--fill: 68%;"><span></span></div>
+              <span>Measured demand</span>
+            </div>
+            <div class="availability-row">
+              <strong>May</strong>
+              <div class="track" style="--fill: 38%;"><span></span></div>
+              <span>Open space</span>
+            </div>
+            <div class="availability-row">
+              <strong>June</strong>
+              <div class="track" style="--fill: 22%;"><span></span></div>
+              <span>Quiet weekends</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-note">
+          <div class="mini-kicker">Design note</div>
+          <strong>Booked days are struck through, not ringed.</strong>
+          <p>The calendar language now reads like availability, not decoration.</p>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="concept">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Concept direction</div>
+          <h2 class="section-title">A beach stay site with better taste and less noise.</h2>
+        </div>
+        <p>
+          I pushed this toward a higher-end coastal product feel, not a standard holiday-rental template.
+          The asymmetry, restraint, and motion are there to make it feel considered rather than busy.
+        </p>
+      </div>
+
+      <div class="bento">
+        <div class="stack">
+          <article class="panel experience-card" id="stay">
+            <div class="experience-photo">
+              <img src="../../photos/_DSC6016-Edit.jpg" alt="" />
+            </div>
+            <div class="experience-copy">
+              <div>
+                <div class="section-kicker">Stay architecture</div>
+                <h3>Split imagery from information so the page breathes.</h3>
+                <p>
+                  The layout stops stacking identical sections and instead alternates texture, copy, and structured detail.
+                  That gives the house more presence, and makes the content feel less like a builder template.
+                </p>
+              </div>
+              <div class="micro-grid">
+                <div class="micro-card">
+                  <strong>Entry rhythm</strong>
+                  <span>Hero, proof, booking, then local detail. No dead sections.</span>
+                </div>
+                <div class="micro-card">
+                  <strong>Visual discipline</strong>
+                  <span>One accent color, soft glass surfaces, and tighter typography.</span>
+                </div>
+                <div class="micro-card">
+                  <strong>Photo-first</strong>
+                  <span>Your images do the heavy lifting instead of generic stock blocks.</span>
+                </div>
+                <div class="micro-card">
+                  <strong>Mobile fallback</strong>
+                  <span>The asymmetry collapses cleanly without turning into a mess.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel marquee-panel">
+            <div class="panel-inner">
+              <div>
+                <div class="section-kicker">Local signal</div>
+                <h3>Not just a property, a grounded place to arrive.</h3>
+                <p style="color: rgba(244,242,236,0.72); line-height: 1.75; max-width: 60ch; margin-top: 12px;">
+                  The concept treats Pohara as part of the experience, not an afterthought.
+                  That makes the page feel more premium and more believable.
+                </p>
+              </div>
+              <div class="marquee-track">
+                <div class="marquee-inner">
+                  <span class="chip"><i></i> Golden Bay light</span>
+                  <span class="chip"><i></i> Easy beach access</span>
+                  <span class="chip"><i></i> Quiet evenings</span>
+                  <span class="chip"><i></i> Local walks and swims</span>
+                  <span class="chip"><i></i> Clean booking flow</span>
+                  <span class="chip"><i></i> Golden Bay light</span>
+                  <span class="chip"><i></i> Easy beach access</span>
+                  <span class="chip"><i></i> Quiet evenings</span>
+                  <span class="chip"><i></i> Local walks and swims</span>
+                  <span class="chip"><i></i> Clean booking flow</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="stack" id="flow">
+          <article class="panel calendar-panel">
+            <div class="calendar-shell">
+              <div class="calendar-top">
+                <div>
+                  <div class="section-kicker">Booking view</div>
+                  <h3>Availability that reads instantly.</h3>
+                </div>
+                <div class="calendar-badge">
+                  <span class="pulse-dot" style="animation-duration: 3.4s;"></span>
+                  Live logic, quieter UI
+                </div>
+              </div>
+              <div class="calendar-grid" aria-hidden="true">
+                <div class="weekday">Mon</div><div class="weekday">Tue</div><div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div><div class="weekday">Sun</div>
+                <div class="day dim">31</div><div class="day">1</div><div class="day">2</div><div class="day booked">3</div><div class="day booked">4</div><div class="day">5</div><div class="day">6</div>
+                <div class="day">7</div><div class="day">8</div><div class="day focus">9</div><div class="day">10</div><div class="day booked">11</div><div class="day booked">12</div><div class="day">13</div>
+                <div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day booked">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div>
+                <div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div>
+                <div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day dim">1</div><div class="day dim">2</div><div class="day dim">3</div><div class="day dim">4</div>
+              </div>
+              <div class="calendar-footer">
+                <span class="legend"><span class="legend-mark">9</span> Selected</span>
+                <span class="legend"><span class="legend-mark booked">11</span> Booked</span>
+                <span class="legend"><span class="legend-mark" style="background: rgba(29,106,109,0.1); color: var(--accent);">A</span> Available</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel signal-panel">
+            <div class="panel-inner">
+              <div class="section-kicker">Operational feel</div>
+              <h3>Clear signals instead of a pile of widgets.</h3>
+              <p>
+                I leaned into a smarter hospitality feel here, where booking, enquiry, and trust signals are integrated
+                without turning the page into a dashboard.
+              </p>
+              <div class="signal-lines">
+                <div class="signal-row">
+                  <div>
+                    <strong>Feed status</strong>
+                    <span>Private calendar source polled on a clean interval</span>
+                  </div>
+                  <div class="signal-value">Healthy</div>
+                </div>
+                <div class="signal-row">
+                  <div>
+                    <strong>Booking conflicts</strong>
+                    <span>No duplicate marks, no overdrawn availability cues</span>
+                  </div>
+                  <div class="signal-value">Zero</div>
+                </div>
+                <div class="signal-row">
+                  <div>
+                    <strong>Fallback path</strong>
+                    <span>Email confirmation remains visible if sync is unavailable</span>
+                  </div>
+                  <div class="signal-value">Ready</div>
+                </div>
+                <div class="signal-row">
+                  <div>
+                    <strong>Enquiry state</strong>
+                    <span>Empty state is calm instead of looking broken</span>
+                  </div>
+                  <div class="signal-value">Clear</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="gallery">
+        <div class="gallery-copy">
+          <div class="section-kicker">Photo language</div>
+          <h2 class="section-title">Let the images feel expensive.</h2>
+          <p>
+            The current site can be pushed much further by trusting the imagery and reducing filler.
+            This concept uses oversized photography, quieter overlays, and stronger spacing so the place feels more desirable.
+          </p>
+          <p>
+            It also gives us a cleaner path to replace the remaining placeholder content and build out accommodation,
+            local area, and booking moments in a more cohesive way.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-large">
+            <img src="../../photos/hero.jpg" alt="" />
+          </div>
+          <div class="gallery-side">
+            <div class="gallery-small">
+              <img src="../../photos/_DSC6016-Edit.jpg" alt="" />
+            </div>
+            <div class="text-slab">
+              <div class="section-kicker">What this changes</div>
+              <ul>
+                <li>
+                  <strong>More modern hierarchy</strong>
+                  <span>Larger typographic contrast and less repetitive boxwork.</span>
+                </li>
+                <li>
+                  <strong>Smarter booking UI</strong>
+                  <span>Availability feels functional, not ornamental.</span>
+                </li>
+                <li>
+                  <strong>Better conversion tone</strong>
+                  <span>Sharper confidence without sounding corporate or generic.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="cta-wrap">
+        <div>
+          <div class="section-kicker">Next move</div>
+          <h2 class="section-title" style="max-width: 10ch;">If you like this direction, I can turn it into the real homepage.</h2>
+          <p>
+            I kept this separate on purpose so we can be bold. If the feel is right, I can port the best parts into the live site,
+            replace the remaining placeholder sections, and tighten the booking/calendar experience properly.
+          </p>
+          <div class="footer-note">Local concept only, not wired into the live page.</div>
+        </div>
+        <div class="cta-actions">
+          <a class="button button-primary magnetic" href="#top">Back to top</a>
+          <a class="button button-secondary" href="../../index.html">Open current homepage</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var hero = document.getElementById('hero-stage');
+      var magnets = document.querySelectorAll('.magnetic');
+
+      if (hero && window.matchMedia('(pointer:fine)').matches) {
+        var currentX = 0;
+        var currentY = 0;
+        var targetX = 0;
+        var targetY = 0;
+
+        window.addEventListener('mousemove', function (event) {
+          var x = (event.clientX / window.innerWidth - 0.5) * 12;
+          var y = (event.clientY / window.innerHeight - 0.5) * -10;
+          targetX = x;
+          targetY = y;
+        }, { passive: true });
+
+        function animateHero() {
+          currentX += (targetX - currentX) * 0.08;
+          currentY += (targetY - currentY) * 0.08;
+          hero.style.transform = 'rotateX(' + currentY + 'deg) rotateY(' + currentX + 'deg)';
+          requestAnimationFrame(animateHero);
+        }
+        animateHero();
+      }
+
+      magnets.forEach(function (button) {
+        if (!window.matchMedia('(pointer:fine)').matches) return;
+        button.addEventListener('mousemove', function (event) {
+          var rect = button.getBoundingClientRect();
+          var x = ((event.clientX - rect.left) / rect.width - 0.5) * 14;
+          var y = ((event.clientY - rect.top) / rect.height - 0.5) * 10;
+          button.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+        });
+        button.addEventListener('mouseleave', function () {
+          button.style.transform = '';
+        });
+      });
+    }());
+  </script>
+</body>
+</html>
