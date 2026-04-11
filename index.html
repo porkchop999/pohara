@@ -1412,6 +1412,13 @@
         }
       }
 
+      function dayBefore(dateStr) {
+        if (!dateStr) return '';
+        var d = new Date(dateStr + 'T12:00:00Z');
+        d.setUTCDate(d.getUTCDate() - 1);
+        return d.toISOString().substring(0, 10);
+      }
+
       function finalizeEvent() {
         if (!eventStart) return;
 
@@ -1429,7 +1436,7 @@
         }
 
         if (eventEnd) {
-          addDateRange(eventStart, eventEnd);
+          addDateRange(eventStart, dayBefore(eventEnd));
         } else {
           addDate(eventStart);
         }
