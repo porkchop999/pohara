@@ -41,7 +41,7 @@ jobs:
 
           if [ "$(jq -r '.items | length' events.json)" -eq 0 ]; then
             echo "No bookings found - using empty calendar"
-            cat > assets/bookings.ics << 'EOF'
+            cat > assets/bookings-live.ics << 'EOF'
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Pohara Beach//Bookings//EN
@@ -76,7 +76,7 @@ for ev in events:
 
 output.append("END:VCALENDAR")
 
-with open('assets/bookings.ics', 'w') as f:
+with open('assets/bookings-live.ics', 'w') as f:
     f.write('\n'.join(line for line in output if line) + '\n')
 
 print(f"Generated iCal with {len(events)} events")
@@ -87,6 +87,6 @@ PYEOF
         run: |
           git config user.name "oc-bot"
           git config user.email "oc@openclaw.ai"
-          git add assets/bookings.ics
+          git add assets/bookings-live.ics
           git diff --quiet --cached || git commit -m "Sync bookings calendar $(date '+%Y-%m-%d %H:%M')"
           git push

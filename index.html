@@ -1362,7 +1362,7 @@
     var bookedDates = [];
     
     // Fetch bookings from Google Calendar iCal
-    fetch('assets/bookings.ics?v=' + Date.now())
+    fetch('assets/bookings-live.ics?v=' + Date.now())
       .then(res => {
         if (!res.ok) throw new Error('Network response not ok');
         return res.text();
