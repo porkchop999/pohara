@@ -810,16 +810,7 @@
 
   <!-- ─── HERO ────────────────────────────────────────── -->
   <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-slide active" style="background-image: url('assets/photos/IMG_8495-optimised.jpg')"></div>
-      <div class="hero-slide" style="background-image: url('assets/photos/IMG_8497-optimised.jpg')"></div>
-      <div class="hero-slide" style="background-image: url('assets/photos/IMG_8580-optimised.jpg')"></div>
-      <div class="hero-slide" style="background-image: url('assets/photos/IMG_8656-optimised.jpg')"></div>
-      <div class="hero-slide" style="background-image: url('assets/photos/IMG_8687-optimised.jpg')"></div>
-      <div class="hero-slide" style="background-image: url('assets/photos/IMG_8809-optimised.jpg')"></div>
-      <div class="hero-slide" style="background-image: url('assets/photos/IMG_4074-optimised.jpg')"></div>
-      <div class="hero-slide" style="background-image: url('assets/photos/IMG_5092-optimised.jpg')"></div>
-    </div>
+    <div class="hero-bg" id="hero-carousel"></div>
     <div class="hero-content">
       <div class="hero-badge">Golden Bay, New Zealand</div>
       <h1>Welcome to Pohara</h1>
@@ -1372,13 +1363,28 @@
     });
   // ─── Hero Slideshow ────────────────────────────────
     document.addEventListener('DOMContentLoaded', function() {
-      var slides = document.querySelectorAll('.hero-slide');
-      if (!slides.length) {
-        console.log('No slides found');
-        return;
+      var heroImages = [
+        'IMG_0340 (1)', 'IMG_0477', 'IMG_0932', 'IMG_0945', 'IMG_1554', 'IMG_2224',
+        'IMG_3033', 'IMG_3755', 'IMG_3973', 'IMG_4074', 'IMG_4620', 'IMG_4847',
+        'IMG_5092', 'IMG_5892', 'IMG_8497', 'IMG_8580', 'IMG_8656', 'IMG_8687',
+        'IMG_8722', '_DSC6919'
+      ];
+      // Shuffle array (Fisher-Yates)
+      for (var i = heroImages.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = heroImages[i]; heroImages[i] = heroImages[j]; heroImages[j] = tmp;
       }
+      var carousel = document.getElementById('hero-carousel');
+      if (!carousel) return;
+      heroImages.forEach(function(img, idx) {
+        var div = document.createElement('div');
+        div.className = 'hero-slide' + (idx === 0 ? ' active' : '');
+        div.style.backgroundImage = "url('assets/photos/" + img + "-optimised.jpg')";
+        carousel.appendChild(div);
+      });
+      var slides = document.querySelectorAll('.hero-slide');
+      if (!slides.length) return;
       var current = 0;
-      console.log('Hero carousel initialized with ' + slides.length + ' slides');
       setInterval(function () {
         slides[current].classList.remove('active');
         setTimeout(function() {
