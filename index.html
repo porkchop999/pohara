@@ -321,14 +321,44 @@
       bottom: -16px;
       right: 8px;
       z-index: 10;
-      background: var(--ocean);
-      color: var(--white);
-      padding: 1rem 1.5rem;
+      background: var(--white);
+      color: var(--ocean);
+      padding: 0.75rem 1.125rem;
       border-radius: var(--radius);
       font-family: var(--font-head);
-      font-size: 1rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.24);
+    }
+
+    .about-img-tag.blur {
+      background: rgba(26,74,110,0.82);
+      color: var(--white);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .about-img-tag.inverse {
+      background: var(--ocean);
+      color: var(--white);
+    }
+
+    .highlight-img .about-img-tag {
+      bottom: -76px;
+      right: 20px;
+      z-index: 3;
+    }
+
+    .highlight-img .about-img-tag.taupo-label {
+      bottom: -26px;
+    }
+
+    .highlight-img .about-img-tag.separation-label {
+      bottom: -26px;
+    }
+
+    .highlight-img .about-img-tag.wharariki-label {
+      bottom: -26px;
     }
 
     .about-text h2 { margin-bottom: 1.5rem; }
@@ -351,6 +381,22 @@
     @media (max-width: 768px) {
       .about-inner { grid-template-columns: 1fr; gap: 2rem; }
       .about-img-tag { right: 1rem; }
+      .highlight-img .about-img-tag {
+        bottom: -72px;
+        right: 16px;
+      }
+
+      .highlight-img .about-img-tag.taupo-label {
+        bottom: -22px;
+      }
+
+      .highlight-img .about-img-tag.separation-label {
+        bottom: -22px;
+      }
+
+      .highlight-img .about-img-tag.wharariki-label {
+        bottom: -22px;
+      }
     }
 
     /* ─── SECTION SHARED ───────────────────────────────── */
@@ -453,11 +499,17 @@
     .highlight-img {
       position: relative;
       border-radius: var(--radius);
-      overflow: hidden;
+      overflow: visible;
       box-shadow: var(--shadow-md);
       height: 320px;
     }
-    .highlight-img img { width: 100%; height: 100%; object-fit: cover; }
+    .highlight-img img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .highlight-text h3 { margin-bottom: 0.75rem; font-size: 1.5rem; }
     .highlight-text p { font-size: 1rem; }
@@ -867,6 +919,7 @@
       </div>
       <div class="about-img-wrap">
         <img src="photos/pohara-aerial.jpg" alt="Pohara beach aerial view" />
+        <div class="about-img-tag blur">Wainui Bay, Golden Bay, NZ</div>
       </div>
     </div>
   </section>
@@ -964,6 +1017,7 @@
       <div class="highlight-row">
         <div class="highlight-img">
           <img src="assets/photos/IMG_8722-optimised.jpg" alt="Abel Tasman National Park" />
+          <div class="about-img-tag inverse taupo-label">Taupo Point</div>
         </div>
         <div class="highlight-text">
           <h3>Abel Tasman National Park</h3>
@@ -976,6 +1030,7 @@
       <div class="highlight-row reverse">
         <div class="highlight-img">
           <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Golden Bay landscape" />
+          <div class="about-img-tag inverse separation-label">Speration Point</div>
         </div>
         <div class="highlight-text">
           <h3>The Separation Point Walk</h3>
@@ -988,6 +1043,7 @@
       <div class="highlight-row">
         <div class="highlight-img">
           <img src="assets/photos/IMG_8703-optimised.jpg" alt="Cape Farewell & Wharariki Beach" />
+          <div class="about-img-tag inverse wharariki-label">Wharariki Beach</div>
         </div>
         <div class="highlight-text">
           <h3>Cape Farewell & Wharariki Beach</h3>
