@@ -138,6 +138,12 @@
 
     .hero-grid {
       display: grid;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .hero-detail {
+      display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
       gap: 2rem;
       align-items: end;
@@ -199,7 +205,6 @@
     .hero-visual {
       display: grid;
       gap: 1rem;
-      align-self: stretch;
     }
 
     .hero-image-wrap {
@@ -212,8 +217,7 @@
 
     .hero-image {
       width: 100%;
-      min-height: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 16 / 7;
       object-fit: cover;
       object-position: center;
       border-radius: 22px;
@@ -551,6 +555,10 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-detail {
+        grid-template-columns: 1fr;
+      }
+
       .hero-copy {
         padding-right: 0;
       }
@@ -624,20 +632,22 @@
   <main class="page-shell">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow"><i class="fa-solid fa-water-ladder" aria-hidden="true"></i> Golden Bay beach guide</span>
-          <h1>Beach days, done properly.</h1>
-          <p class="hero-lead">If you are staying in Pōhara, you are already close to one of Golden Bay’s easiest family swims. From there, the smart move is choosing the right beach for the day, not just the nearest one. Ligar Bay is warmer and gentler for little kids, Tata is better for deeper swimming, and Tōtaranui is the scenic full-day version.</p>
-          <div class="hero-meta">
-            <span><i class="fa-solid fa-child-reaching" aria-hidden="true"></i> Best for families</span>
-            <span><i class="fa-solid fa-person-swimming" aria-hidden="true"></i> Best all-round swim</span>
-            <span><i class="fa-solid fa-ship" aria-hidden="true"></i> Best for paddle days</span>
-          </div>
-        </div>
         <div class="hero-visual">
           <div class="hero-image-wrap">
             <img src="assets/photos/wainui-beach.jpg" alt="Clear water and curved shoreline at Wainui Beach" class="hero-image" />
             <span class="stack-caption">Supplied beach image, Wainui Beach</span>
+          </div>
+        </div>
+        <div class="hero-detail">
+          <div class="hero-copy">
+            <span class="eyebrow"><i class="fa-solid fa-water-ladder" aria-hidden="true"></i> Golden Bay beach guide</span>
+            <h1>Beach days, done properly.</h1>
+            <p class="hero-lead">If you are staying in Pōhara, you are already close to one of Golden Bay’s easiest family swims. From there, the smart move is choosing the right beach for the day, not just the nearest one. Ligar Bay is warmer and gentler for little kids, Tata is better for deeper swimming, and Tōtaranui is the scenic full-day version.</p>
+            <div class="hero-meta">
+              <span><i class="fa-solid fa-child-reaching" aria-hidden="true"></i> Best for families</span>
+              <span><i class="fa-solid fa-person-swimming" aria-hidden="true"></i> Best all-round swim</span>
+              <span><i class="fa-solid fa-ship" aria-hidden="true"></i> Best for paddle days</span>
+            </div>
           </div>
           <aside class="hero-panel">
             <h2>At a glance</h2>
