@@ -323,6 +323,15 @@
       gap: 1.2rem;
     }
 
+    .feature-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 22px;
+      display: block;
+      box-shadow: var(--shadow-soft);
+    }
+
     .feature-top {
       display: flex;
       align-items: flex-start;
@@ -629,6 +638,7 @@
 
         <div class="beach-grid">
           <article class="beach-feature">
+            <img src="assets/photos/pohara-beach.jpg" alt="Sunset light across the sand at Pōhara Beach" class="feature-image" />
             <div class="feature-top">
               <div>
                 <h3>Pōhara Beach</h3>
@@ -636,6 +646,7 @@
               </div>
               <span class="feature-tag">Stay here, start here</span>
             </div>
+            <span class="stack-caption">Supplied beach image, Pōhara Beach</span>
             <div class="feature-grid">
               <div>
                 <strong>Swim feel</strong>
