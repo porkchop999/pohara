@@ -4,170 +4,754 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beach & Swimming — Pohara, Golden Bay</title>
-  <meta name="description" content="Discover Pohara's golden sand beach: safe swimming, paddleboarding, kayaking, and family-friendly waters year-round." />
+  <meta name="description" content="A guide to the best swimming beaches around Golden Bay, from easy family swims at Pōhara to warm shallows at Ligar Bay and deeper water at Tata Beach." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ocean:#1a4a6e; --ocean-lt:#2a6a8e; --sand:#e8d5b7; --sand-lt:#f5ead8;
-      --sage:#7a9e7e; --cream:#faf8f5; --charcoal:#2d3436; --stone:#636e72;
-      --white:#ffffff; --shadow:0 4px 20px rgba(0,0,0,0.08); --radius:12px;
-      --font-head:'Quicksand', -apple-system, sans-serif; --font-body:'Lato', -apple-system, sans-serif;
+      --ocean: #1a4a6e;
+      --ocean-deep: #143a56;
+      --ocean-soft: #dfeaf1;
+      --sand: #e8d5b7;
+      --sand-soft: #f5ead8;
+      --cream: #faf8f5;
+      --white: #ffffff;
+      --charcoal: #2d3436;
+      --stone: #636e72;
+      --border: rgba(26, 74, 110, 0.10);
+      --shadow: 0 16px 50px rgba(20, 58, 86, 0.08);
+      --shadow-soft: 0 8px 24px rgba(20, 58, 86, 0.06);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --font-head: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max: 1240px;
     }
-    body { font-family: var(--font-body); color: var(--charcoal); background: var(--cream); line-height: 1.7; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; } img { max-width: 100%; display: block; }
-    h1,h2,h3,h4 { font-family: var(--font-head); line-height: 1.15; color: var(--charcoal); }
-    p { color: var(--stone); margin-bottom: 1rem; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .section { padding: 4rem 0; }
-    .section-alt { background: var(--white); }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-label { display: inline-block; padding: 0.25rem 0.75rem; background: var(--sand-lt); color: var(--ocean); border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .section-header h2 { font-size: 2.5rem; margin-bottom: 0.75rem; }
-    .section-header p { max-width: 700px; margin: 0 auto; }
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.06); transition: box-shadow 0.3s ease; }
-    .nav.scrolled { box-shadow: var(--shadow); }
-    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; color: var(--ocean); }
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--stone); }
-    .nav-links a:hover { color: var(--ocean); }
-    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; }
-    .btn-primary { background: var(--ocean); color: var(--white); border: 2px solid var(--ocean); }
-    .btn-primary:hover { background: var(--ocean-lt); border-color: var(--ocean-lt); }
-    .hero { position: relative; padding: 8rem 0 6rem; background: linear-gradient(180deg, var(--cream) 0%, var(--sand-lt) 100%); text-align: center; }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem; }
-    .hero-img { margin-top: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-md); max-height: 500px; width: auto; max-width: 100%; object-fit: cover; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); }
-    .card h3 { margin-bottom: 0.75rem; font-size: 1.4rem; }
-    footer { background: var(--ocean); color: var(--white); padding: 3rem 0; text-align: center; }
-    footer a { color: var(--sand); }
-    footer a:hover { color: var(--white); }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      background: linear-gradient(180deg, #f8f5f0 0%, #faf8f5 38%, #ffffff 100%);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.08; color: var(--charcoal); }
+    p { color: var(--stone); }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 248, 245, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(26, 74, 110, 0.08);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-head);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ocean);
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: var(--stone);
+      font-weight: 600;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ocean);
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.2rem;
+      background: var(--ocean);
+      color: var(--white);
+      border: 1px solid var(--ocean);
+      box-shadow: 0 12px 28px rgba(26, 74, 110, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--ocean-deep);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(26, 74, 110, 0.22);
+    }
+
+    .page-shell {
+      padding-top: 6.25rem;
+    }
+
+    .hero {
+      min-height: calc(100dvh - 5rem);
+      display: flex;
+      align-items: center;
+      padding: 2rem 0 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .hero-copy {
+      padding-right: 3rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(232, 213, 183, 0.42);
+      color: var(--ocean);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      letter-spacing: -0.05em;
+      max-width: 8ch;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      max-width: 58ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(26, 74, 110, 0.08);
+      color: var(--ocean);
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,234,216,0.92) 100%);
+      border: 1px solid rgba(26, 74, 110, 0.08);
+      border-radius: 30px;
+      padding: 1.8rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(26, 74, 110, 0.08), transparent 42%);
+      pointer-events: none;
+    }
+
+    .hero-panel h2 {
+      font-size: 1.45rem;
+      margin-bottom: 1rem;
+      color: var(--ocean-deep);
+    }
+
+    .hero-panel p {
+      margin-bottom: 1.25rem;
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .signal {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(26, 74, 110, 0.08);
+    }
+
+    .signal i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(26, 74, 110, 0.08);
+      color: var(--ocean);
+    }
+
+    .signal strong {
+      display: block;
+      color: var(--charcoal);
+      margin-bottom: 0.15rem;
+      font-family: var(--font-head);
+      font-size: 1rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(232, 213, 183, 0.42);
+      color: var(--ocean);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+    }
+
+    .section-header p {
+      font-size: 1.05rem;
+      max-width: 58ch;
+    }
+
+    .beach-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .beach-feature,
+    .beach-stack article,
+    .selector-card,
+    .note-card,
+    .safety-card,
+    .summary-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .beach-feature {
+      padding: 2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(223,234,241,0.56) 100%);
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .feature-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .feature-top h3 {
+      font-size: 2rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .feature-tag {
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(26, 74, 110, 0.08);
+      color: var(--ocean);
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .feature-grid div {
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(26, 74, 110, 0.08);
+    }
+
+    .feature-grid strong {
+      display: block;
+      color: var(--ocean);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .beach-stack {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .beach-stack article {
+      padding: 1.4rem;
+      background: rgba(255,255,255,0.92);
+    }
+
+    .beach-stack h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 1.35rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .stack-tag {
+      color: var(--ocean);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .note-card,
+    .safety-card,
+    .summary-panel,
+    .selector-card {
+      padding: 1.6rem;
+    }
+
+    .note-card h3,
+    .safety-card h3,
+    .selector-card h3,
+    .summary-panel h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .summary-panel {
+      background: linear-gradient(180deg, rgba(245,234,216,0.6) 0%, rgba(255,255,255,1) 100%);
+    }
+
+    .selector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .selector-card ul,
+    .safety-card ul,
+    .summary-panel ul {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.95rem;
+    }
+
+    .selector-card li,
+    .safety-card li,
+    .summary-panel li {
+      padding-left: 1.15rem;
+      position: relative;
+      color: var(--stone);
+    }
+
+    .selector-card li::before,
+    .safety-card li::before,
+    .summary-panel li::before {
+      content: "";
+      position: absolute;
+      top: 0.7rem;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ocean);
+    }
+
+    .footer {
+      padding: 3.2rem 0;
+      background: var(--ocean-deep);
+      color: rgba(255,255,255,0.88);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      color: var(--sand-soft);
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .section-header,
+      .beach-grid,
+      .support-grid,
+      .selector-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding-right: 0;
+      }
+
+      .section-header h2 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container,
+      .nav-inner {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 0.85rem 1rem;
+        justify-content: flex-start;
+      }
+
+      .page-shell {
+        padding-top: 8.5rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 1rem;
+      }
+
+      .hero h1 {
+        max-width: none;
+        font-size: 2.8rem;
+      }
+
+      .feature-top,
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <nav class="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><path d="M12 2a10 10 0 0 1 0 20"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><path d="M12 2a10 10 0 0 1 0 20"/></svg>
         Pohara
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="booking.html">Book</a>
+        <a href="booking.html">Book a Stay</a>
         <a href="cafes-restaurants.html">Cafes</a>
         <a href="wineries-cideries.html">Wineries</a>
         <a href="art-crafts.html">Art</a>
-        <a href="mailto:info@pohara.co.nz" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Contact</a>
+        <a href="mailto:info@pohara.co.nz" class="btn btn-primary">Contact</a>
       </div>
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="container">
-      <h1>Beach & Swimming</h1>
-      <p>Golden Bay has some of the best family swimming beaches in the top of the South Island. Base yourself in Pōhara, then explore nearby favourites like Ligar Bay, Tata Beach, and Tōtaranui depending on the tide, the kids, and how adventurous you feel.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Local Favourite</span>
-        <h2>Start with Pōhara Beach</h2>
-        <p>Pōhara is the easy default if you want a classic Golden Bay beach day without overthinking it. Official Nelson Tasman visitor info describes it as a vast golden beach that draws swimmers, kayakers and boaties, with plenty of space at low tide and vegetation-fringed areas for shade. It is the most convenient option if you are staying in Pōhara and want swimming, paddleboarding, or a long barefoot walk all in one place.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Best Beaches</span>
-        <h2>Where to swim around Golden Bay</h2>
-        <p>Each beach has a slightly different feel. These are the standouts if swimming is high on the agenda.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Pōhara Beach</h3>
-          <p>Best for convenience, space, and an easy all-round beach day. Golden Bay tourism sources describe Pōhara as a shallow tidal beach with soft sand and warm high-tide swims, making it especially appealing for families and relaxed summer afternoons.</p>
+  <main class="page-shell">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><i class="fa-solid fa-water-ladder" aria-hidden="true"></i> Golden Bay beach guide</span>
+          <h1>Beach days, done properly.</h1>
+          <p class="hero-lead">If you are staying in Pōhara, you are already close to one of Golden Bay’s easiest family swims. From there, the smart move is choosing the right beach for the day, not just the nearest one. Ligar Bay is warmer and gentler for little kids, Tata is better for deeper swimming, and Tōtaranui is the scenic full-day version.</p>
+          <div class="hero-meta">
+            <span><i class="fa-solid fa-child-reaching" aria-hidden="true"></i> Best for families</span>
+            <span><i class="fa-solid fa-person-swimming" aria-hidden="true"></i> Best all-round swim</span>
+            <span><i class="fa-solid fa-ship" aria-hidden="true"></i> Best for paddle days</span>
+          </div>
         </div>
-        <div class="card">
-          <h3>Ligar Bay</h3>
-          <p>Best for younger children and warm shallows. Local destination guides describe Ligar Bay as largely sheltered, safe for swimming at high tide, and ideal for kids at low tide thanks to warm tidal pools, rock exploration, and a peaceful no-boating feel.</p>
+        <aside class="hero-panel">
+          <h2>At a glance</h2>
+          <p>These are the beaches worth knowing if swimming is the main reason you are heading out.</p>
+          <div class="signal-list">
+            <div class="signal">
+              <i class="fa-solid fa-sun" aria-hidden="true"></i>
+              <div>
+                <strong>Pōhara</strong>
+                Easy, local, broad beach, good when you want the least hassle.
+              </div>
+            </div>
+            <div class="signal">
+              <i class="fa-solid fa-bucket" aria-hidden="true"></i>
+              <div>
+                <strong>Ligar Bay</strong>
+                Warm shallows, tidal pools, and the easiest family pace.
+              </div>
+            </div>
+            <div class="signal">
+              <i class="fa-solid fa-water" aria-hidden="true"></i>
+              <div>
+                <strong>Tata Beach</strong>
+                Deeper water, classic golden bay look, better for a proper swim.
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Where to start</span>
+            <h2>Pōhara is the anchor beach.</h2>
+          </div>
+          <p>Pōhara is still the smartest default. Nelson Tasman visitor guidance describes it as a vast golden beach that draws swimmers, kayakers and boaties, with lots of room at low tide and shade from the vegetation edge. If you want one beach that works for a casual swim, a paddleboard, and a barefoot walk in the same afternoon, this is it.</p>
         </div>
-        <div class="card">
-          <h3>Tata Beach</h3>
-          <p>Best for deeper swimming and a brighter, more classic postcard beach feel. Golden Bay beach guides note that Tata is deeper for swimming at any time of day, while Nelson Tasman promotes it as a sheltered launching point for swimming, kayaking, and boating adventures.</p>
+
+        <div class="beach-grid">
+          <article class="beach-feature">
+            <div class="feature-top">
+              <div>
+                <h3>Pōhara Beach</h3>
+                <p>Best for convenience, space, and an easy all-round beach day.</p>
+              </div>
+              <span class="feature-tag">Stay here, start here</span>
+            </div>
+            <div class="feature-grid">
+              <div>
+                <strong>Swim feel</strong>
+                Gentle, broad, easy at high tide, relaxed at low tide.
+              </div>
+              <div>
+                <strong>Best for</strong>
+                Families, nearby accommodation, paddling without a big mission.
+              </div>
+              <div>
+                <strong>What stands out</strong>
+                Plenty of space, easy access, and a proper beach-day rhythm.
+              </div>
+              <div>
+                <strong>Good call when</strong>
+                You want the least planning and still want a very good swim.
+              </div>
+            </div>
+          </article>
+
+          <div class="beach-stack">
+            <article>
+              <h3>
+                Ligar Bay
+                <span class="stack-tag">Warmest family feel</span>
+              </h3>
+              <p>Ligar Bay is the beach to choose when younger kids are the centre of the plan. Local guides consistently describe it as sheltered, safe at high tide, and especially good at low tide when the pools and western-end rocks become part of the fun.</p>
+            </article>
+            <article>
+              <h3>
+                Tata Beach
+                <span class="stack-tag">Deeper swim</span>
+              </h3>
+              <p>Tata is the more flexible swim if you do not want to time the tide as tightly. Golden Bay guides note that it is deeper for swimming through the day, while Nelson Tasman promotes it as a sheltered base for swimming, kayaking, and boating.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="support-grid">
+          <article class="note-card">
+            <h3>Tōtaranui is the scenic upgrade</h3>
+            <p>If you want a bigger outing, Tōtaranui is the one to plan. It is not the casual pop-in option, but it gives you the full golden-sand, Abel Tasman version of a beach day, with swimming, kayaking, and bush walks all in reach.</p>
+          </article>
+          <article class="safety-card">
+            <h3>Not every famous beach is a swimming beach</h3>
+            <p>Wharariki is unforgettable, but it is not the place for a casual swim. Strong currents and wild surf make it better as a dramatic walk, dune day, or seal-viewing stop than a swimming pick.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Worth the Drive</span>
-        <h2>Tōtaranui for the full golden-sand experience</h2>
-        <p>If you want a bigger outing, head to Tōtaranui at the northern end of Abel Tasman National Park. Tourism and DOC sources both describe it as a long golden-sand beach that is great for relaxing, swimming, kayaking, and pairing with native bush walks. It is less of a quick dip beach and more of a full-day mission, but the setting is beautiful.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="grid-3">
-        <div class="card">
-          <h3>Swimming</h3>
-          <p>For a simple swim close to home, start with high tide at Pōhara. If you want warmer shallows and easy splash zones for small kids, Ligar Bay is usually the stronger pick. If you prefer deeper water and don’t want to time the tide as carefully, Tata Beach is the better option.</p>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Choose by mood</span>
+            <h2>Pick the beach that matches the day.</h2>
+          </div>
+          <p>The best beach in Golden Bay depends on who is with you, what the tide is doing, and whether you want a quick swim or a whole outing. This is the short version.</p>
         </div>
-        <div class="card">
-          <h3>Paddleboarding & Kayaking</h3>
-          <p>Pōhara and Tata are the most natural choices for paddleboards and kayaks. Pōhara gives you plenty of room and easy access, while Tata’s sheltered bay and island-dotted outlook make it especially good for a more scenic on-water session.</p>
+
+        <div class="selector-grid">
+          <article class="selector-card">
+            <h3>For younger kids</h3>
+            <p>Ligar Bay is usually the strongest answer.</p>
+            <ul>
+              <li>Warmer shallows and protected feel</li>
+              <li>Rock pools and exploring at low tide</li>
+              <li>Peaceful setting with less water-sport energy</li>
+            </ul>
+          </article>
+          <article class="selector-card">
+            <h3>For a proper swim</h3>
+            <p>Tata Beach is the better call when you want deeper water.</p>
+            <ul>
+              <li>More forgiving through the day</li>
+              <li>Good if you do not want to chase one tide window</li>
+              <li>Works well with kayaks and summer activity</li>
+            </ul>
+          </article>
+          <article class="selector-card">
+            <h3>For easy convenience</h3>
+            <p>Pōhara wins when the goal is simple and close.</p>
+            <ul>
+              <li>Closest to accommodation and cafés</li>
+              <li>Great default swim without planning much</li>
+              <li>Easy to combine with a walk or paddle</li>
+            </ul>
+          </article>
         </div>
-        <div class="card">
-          <h3>Families</h3>
-          <p>If you are travelling with younger children, Ligar Bay deserves a special mention. Its sheltered inlet, tidal pools, rock-hopping, and calmer feel make it one of the best family beaches in Golden Bay for a slower, easier day.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Practical read</span>
+            <h2>What actually helps on the day.</h2>
+          </div>
+          <p>The difference between a good beach decision and a flat one is usually tide, age range, and how much time you want to spend in the car.</p>
+        </div>
+
+        <div class="support-grid">
+          <article class="summary-panel">
+            <h3>Quick rules</h3>
+            <ul>
+              <li>Choose Pōhara when you want the easiest beach day from your base.</li>
+              <li>Choose Ligar Bay when toddlers or younger kids are setting the pace.</li>
+              <li>Choose Tata when swimming matters more than low-tide exploring.</li>
+              <li>Choose Tōtaranui when the beach is the outing, not just one stop in it.</li>
+            </ul>
+          </article>
+          <article class="safety-card">
+            <h3>Simple cautions</h3>
+            <ul>
+              <li>High tide generally gives the cleanest, easiest swim at Pōhara and Ligar.</li>
+              <li>Ligar is still great at low tide, just in a different way, more splash and explore than swim laps.</li>
+              <li>Tōtaranui is worth going for, but treat it like a planned day out.</li>
+              <li>Save Wharariki for scenery, not swimming.</li>
+            </ul>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Good to Know</span>
-        <h2>Tips before you go</h2>
-        <ul style="max-width: 760px; margin: 0 auto; list-style: disc inside; color: var(--stone); text-align: left;">
-          <li>Pōhara is best if you want an easy beach day with cafés and accommodation close by.</li>
-          <li>Ligar Bay shines at high tide for swimming and at low tide for kids exploring pools and rocks.</li>
-          <li>Tata Beach works well when you want deeper water and more flexibility through the day.</li>
-          <li>Tōtaranui is worth planning as a longer outing rather than a quick pop-in swim.</li>
-          <li>Wharariki is spectacular, but it is not considered a safe swimming beach because of strong currents and wild surf.</li>
-        </ul>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong style="font-family: var(--font-head); font-size: 1.15rem;">Pohara, Golden Bay</strong>
+        <p style="margin-top: 0.3rem; color: rgba(255,255,255,0.72);">Use Pōhara as your base, then choose the beach that fits the day.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Staying in Pōhara</span>
-        <h2>Why this page starts here</h2>
-        <p>If you are staying in Pōhara, you are already on one of Golden Bay’s best swimming beaches. The real advantage is that you can enjoy an easy local swim, then choose whether to branch out to Ligar Bay, Tata, or Tōtaranui based on the day’s weather, the tide, and who is in the car.</p>
+      <div>
+        Questions? <a href="mailto:info@pohara.co.nz">Contact us</a>
       </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>Questions? <a href="mailto:info@pohara.co.nz" style="color: var(--sand); font-weight: 600;">Contact us</a></p>
-      <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">© 2025 Pohara, Golden Bay</p>
     </div>
   </footer>
 </body>
