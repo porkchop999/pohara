@@ -196,6 +196,30 @@
       box-shadow: var(--shadow-soft);
     }
 
+    .hero-visual {
+      display: grid;
+      gap: 1rem;
+      align-self: stretch;
+    }
+
+    .hero-image-wrap {
+      background: var(--white);
+      border: 1px solid rgba(26, 74, 110, 0.08);
+      border-radius: 30px;
+      padding: 0.9rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image {
+      width: 100%;
+      min-height: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 22px;
+      display: block;
+    }
+
     .hero-panel {
       background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,234,216,0.92) 100%);
       border: 1px solid rgba(26, 74, 110, 0.08);
@@ -606,33 +630,39 @@
             <span><i class="fa-solid fa-ship" aria-hidden="true"></i> Best for paddle days</span>
           </div>
         </div>
-        <aside class="hero-panel">
-          <h2>At a glance</h2>
-          <p>These are the beaches worth knowing if swimming is the main reason you are heading out.</p>
-          <div class="signal-list">
-            <div class="signal">
-              <i class="fa-solid fa-sun" aria-hidden="true"></i>
-              <div>
-                <strong>Pōhara</strong>
-                Easy, local, broad beach, good when you want the least hassle.
-              </div>
-            </div>
-            <div class="signal">
-              <i class="fa-solid fa-bucket" aria-hidden="true"></i>
-              <div>
-                <strong>Ligar Bay</strong>
-                Warm shallows, tidal pools, and the easiest family pace.
-              </div>
-            </div>
-            <div class="signal">
-              <i class="fa-solid fa-water" aria-hidden="true"></i>
-              <div>
-                <strong>Tata Beach</strong>
-                Deeper water, classic golden bay look, better for a proper swim.
-              </div>
-            </div>
+        <div class="hero-visual">
+          <div class="hero-image-wrap">
+            <img src="assets/photos/wainui-beach.jpg" alt="Clear water and curved shoreline at Wainui Beach" class="hero-image" />
+            <span class="stack-caption">Supplied beach image, Wainui Beach</span>
           </div>
-        </aside>
+          <aside class="hero-panel">
+            <h2>At a glance</h2>
+            <p>These are the beaches worth knowing if swimming is the main reason you are heading out.</p>
+            <div class="signal-list">
+              <div class="signal">
+                <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                <div>
+                  <strong>Pōhara</strong>
+                  Easy, local, broad beach, good when you want the least hassle.
+                </div>
+              </div>
+              <div class="signal">
+                <i class="fa-solid fa-bucket" aria-hidden="true"></i>
+                <div>
+                  <strong>Ligar Bay</strong>
+                  Warm shallows, tidal pools, and the easiest family pace.
+                </div>
+              </div>
+              <div class="signal">
+                <i class="fa-solid fa-water" aria-hidden="true"></i>
+                <div>
+                  <strong>Tata Beach</strong>
+                  Deeper water, classic golden bay look, better for a proper swim.
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
