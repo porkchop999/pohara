@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pohara, Golden Bay — New Zealand Tourism</title>
+  <title>Book Your Stay — Pohara, Golden Bay</title>
   <meta name="description" content="Discover Pohara — a stunning coastal paradise at the heart of Golden Bay, New Zealand. Beaches, bush, Abel Tasman, and warm hospitality await." />
 
   <!-- Google Fonts -->
@@ -855,433 +855,101 @@
   <!-- ─── NAVIGATION ──────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Pohara<span>.</span></a>
+      <a href="index.html" class="nav-logo">Pohara<span>.</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <i class="fa-solid fa-bars"></i>
       </button>
       <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#reviews">Reviews</a>
-        <a href="booking.html">Book</a>
-        <a href="#activities">Activities</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#hospitality">Local</a>
-        <a href="booking.html" class="nav-cta">Book a Stay</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="#booking">Book</a>
+        <a href="index.html#activities">Activities</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#hospitality">Local</a>
+        <a href="#booking" class="nav-cta">Book a Stay</a>
       </div>
     </div>
   </nav>
-
-  <!-- ─── HERO ────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="hero-bg" id="hero-carousel"></div>
-    <div class="hero-content">
-      <h1>Welcome to Pohara</h1>
-      <p class="hero-sub">
-        Golden sands, turquoise waters, and the warmth of a small coastal community at the edge of Abel Tasman National Park.
-      </p>
-      <div class="hero-btns">
-        <a href="#activities" class="btn btn-primary">Explore Pohara</a>
-        <a href="booking.html" class="btn btn-outline">Book Your Stay</a>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-  </section>
-
-  <!-- ─── ABOUT ───────────────────────────────────────── -->
-  <section class="about" id="about">
-    <div class="about-inner">
-      <div class="about-text">
-        <span class="section-label">About the Region</span>
-        <h2>Coastal charm at the edge of Abel Tasman</h2>
-        <p>
-          Pohara sits at the heart of Golden Bay, a sheltered inlet at the top of New Zealand's South Island. With its pale golden sand, calm sheltered waters, and a backdrop of towering beech forest and marble mountains, it's one of the country's most unspoiled coastal destinations.
-        </p>
-        <p>
-          Just minutes from the edge of Abel Tasman National Park, Pohara is the perfect base for exploring one of New Zealand's most beloved Great Rides — whether by kayak, on foot, or by scenic water taxi. After a day in the wild, the village offers warm hospitality, excellent local cafes, and some of the sunniest weather in the country.
-        </p>
-        <div class="about-stats">
-          <div>
-            <div class="about-stat-num">2h</div>
-            <div class="about-stat-label">From Nelson</div>
-          </div>
-          <div>
-            <div class="about-stat-num">45km</div>
-            <div class="about-stat-label">Abel Tasman Edge</div>
-          </div>
-          <div>
-            <div class="about-stat-num">200+</div>
-            <div class="about-stat-label">Days of sunshine</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-img-wrap">
-        <img src="photos/pohara-aerial.jpg" alt="Pohara beach aerial view" />
-        <div class="about-img-tag blur">Wainui Bay, Golden Bay, NZ</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── REVIEWS ────────────────────────────────────────── -->
-
-  <section class="section section-dark" id="highlights">
+<!-- ─── BOOKING CALENDAR ──────────────────────────────── -->
+  <section class="section" id="booking" style="background: var(--sand-lt);">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Must-See</span>
-        <h2>Golden Bay highlights</h2>
-        <p>Some of New Zealand's most iconic landscapes and experiences are right on Pohara's doorstep.</p>
+        <span class="section-label">Availability</span>
+        <h2>Check availability & request a booking</h2>
+        <p>Select your dates below and we'll get back to you within 24 hours.</p>
       </div>
 
-      <div class="highlight-row">
-        <div class="highlight-img">
-          <img src="assets/photos/IMG_8722-optimised.jpg" alt="Abel Tasman National Park" />
-          <div class="about-img-tag inverse taupo-label">Taupo Point</div>
-        </div>
-        <div class="highlight-text">
-          <h3>Abel Tasman National Park</h3>
-          <p>
-            New Zealand's smallest national park is also its most accessible and beloved. Golden sand beaches, granite headlands, and crystal-clear tidal estuaries make every visit unforgettable. The Coast Track is a Great Ride — tackle it as a day walk or a multi-day adventure.
-          </p>
-        </div>
-      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; max-width: 900px; margin: 0 auto;">
 
-      <div class="highlight-row reverse">
-        <div class="highlight-img">
-          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Golden Bay landscape" />
-          <div class="about-img-tag inverse separation-label">Speration Point</div>
+        <!-- Calendar -->
+        <div class="booking-calendar">
+          <div class="cal-nav">
+            <button class="cal-btn" onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <h3 id="cal-title"></h3>
+            <button class="cal-btn" onclick="changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <div class="cal-legend">
+            <span><i class="fa-solid fa-circle available"></i> Available</span>
+            <span><span class="legend-day booked">15</span> Booked</span>
+            <span><i class="fa-solid fa-circle selected"></i> Selected</span>
+          </div>
+          <div class="cal-status loading" id="cal-status">Loading live calendar…</div>
         </div>
-        <div class="highlight-text">
-          <h3>The Separation Point Walk</h3>
-          <p>
-            One of Golden Bay's finest short walks — a 2.5-hour return track through ancient beech forest to a stunning headland with views up and down the coast. Watch for the rare and beautiful kaka and tieke (saddleback) in the surrounding canopy.
-          </p>
-        </div>
-      </div>
 
-      <div class="highlight-row">
-        <div class="highlight-img">
-          <img src="assets/photos/IMG_8703-optimised.jpg" alt="Cape Farewell & Wharariki Beach" />
-          <div class="about-img-tag inverse wharariki-label">Wharariki Beach</div>
-        </div>
-        <div class="highlight-text">
-          <h3>Cape Farewell & Wharariki Beach</h3>
-          <p>
-            At the top of the South Island, Cape Farewell is where the Tasman Sea meets the Pacific Ocean. Wharariki Beach — a short walk from the road end — features towering sand dunes, archways, and seals at play in the surf.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-<section class="section section-alt" id="hospitality">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Local Hospitality</span>
-        <h2>Eat, drink, shop local</h2>
-        <p>Golden Bay has a thriving community of artisan producers, independent cafes, and local craftspeople. Here's where to start.</p>
-      </div>
-
-      <div class="card-grid">
-
-        <div class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80')"></div>
-          <div class="card-body">
-            <h3>Local Cafes & Restaurants</h3>
-            <p>
-              Fresh seafood, local produce, and warm country hospitality — Pohara and Takaka have an excellent range of eateries to suit all tastes and budgets.
+        <!-- Booking Form -->
+        <div class="booking-form">
+          <form id="booking-form" onsubmit="submitBooking(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Check-in</label>
+                <input type="text" id="checkin" placeholder="Select date" readonly required />
+              </div>
+              <div class="form-group">
+                <label>Check-out</label>
+                <input type="text" id="checkout" placeholder="Select date" readonly required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Number of guests</label>
+              <select id="guests" required>
+                <option value="">Select guests</option>
+                <option>1 guest</option>
+                <option>2 guests</option>
+                <option>3 guests</option>
+                <option>4 guests</option>
+                <option>5+ guests</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your name</label>
+              <input type="text" id="name" placeholder="Full name" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="email" placeholder="you@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone <span style="opacity:0.5">(optional)</span></label>
+              <input type="tel" id="phone" placeholder="+64 ..." />
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea id="message" rows="3" placeholder="Tell us about your group, any questions, special requests..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              <i class="fa-solid fa-paper-plane"></i> Request to Book
+            </button>
+            <p style="font-size:0.8rem; color:var(--stone); margin-top:0.75rem; text-align:center;">
+              No payment needed now. We'll confirm availability and get back to you.
             </p>
-            <a href="#contact" class="btn btn-primary" style="font-size:0.8rem; padding:0.5rem 1.25rem;">See Recommendations</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80')"></div>
-          <div class="card-body">
-            <h3>Wineries & Cideries</h3>
-            <p>
-              Golden Bay's boutique wineries and artisan cideries are scattered through beautiful rural settings. Sample Cellar Door experiences and seasonal platters with local wine.
-            </p>
-            <a href="#contact" class="btn btn-primary" style="font-size:0.8rem; padding:0.5rem 1.25rem;">See Recommendations</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80')"></div>
-          <div class="card-body">
-            <h3>Art & Crafts</h3>
-            <p>
-              Explore local galleries and studios in Takaka and the surrounding villages. Golden Bay has long attracted artists, sculptors, and craftspeople — find unique pieces to take home.
-            </p>
-            <a href="#contact" class="btn btn-primary" style="font-size:0.8rem; padding:0.5rem 1.25rem;">See Recommendations</a>
-          </div>
+          </form>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ─── REVIEWS ────────────────────────────────────────── -->
-  <section class="section" id="reviews">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Visitor Reviews</span>
-        <h2>What visitors say</h2>
-        <p>Real reviews from recent visitors to Pohara and the Golden Bay region.</p>
-      </div>
-
-      <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-        <div class="review-card" style="background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
-          <div class="review-stars" style="color: var(--sand); margin-bottom: 1rem;">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <p style="font-style: italic; margin-bottom: 1rem;">"Pohara is exactly how I imagined New Zealand beach paradise. Golden sand, turquoise water, and not a soul in sight. The perfect escape."</p>
-          <cite style="font-weight: 600; color: var(--charcoal);">— Sarah, Melbourne</cite>
-        </div>
-
-        <div class="review-card" style="background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
-          <div class="review-stars" style="color: var(--sand); margin-bottom: 1rem;">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <p style="font-style: italic; margin-bottom: 1rem;">"The Abel Tasman kayaking trip was the highlight of our NZ holiday. Wilsons were fantastic — professional, fun, and really knowledgeable. Can't recommend enough."</p>
-          <cite style="font-weight: 600; color: var(--charcoal);">— Parker, Sydney</cite>
-        </div>
-
-        <div class="review-card" style="background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
-          <div class="review-stars" style="color: var(--sand); margin-bottom: 1rem;">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <p style="font-style: italic; margin-bottom: 1rem;">"We came for a weekend, stayed a week. Perfect family beach — safe swimming, pristine sand, and the most beautiful sunsets. Already planning our return."</p>
-          <cite style="font-weight: 600; color: var(--charcoal);">— The Andersons, Wellington</cite>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── ACTIVITIES ───────────────────────────────────── -->
-  <section class="section section-alt" id="activities">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Things to Do</span>
-        <h2>Adventures for every mood</h2>
-        <p>From relaxing on the beach to multi-day tramps — Pohara is your launchpad for Golden Bay exploration.</p>
-      </div>
-
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-
-        <div class="activity-card">
-          <div class="activity-icon icon-ocean">
-            <i class="fa-solid fa-umbrella-beach"></i>
-          </div>
-          <div class="activity-info">
-            <h3>Beach & Swimming</h3>
-            <p>Pohara's golden sand beach is sheltered and safe for swimming, paddleboarding, and kayaking — perfect for families. Calm waters year-round.</p>
-          </div>
-        </div>
-
-        <div class="activity-card">
-          <div class="activity-icon icon-sage">
-            <i class="fa-solid fa-person-hiking"></i>
-          </div>
-          <div class="activity-info">
-            <h3>Abel Tasman Coast Track</h3>
-            <p> NZ's most beloved Great Ride — day walks or multiday tramps. Golden sand beaches, granite headlands, and tidal estuaries. Tackle independently or with a guide.</p>
-          </div>
-        </div>
-
-        <div class="activity-card">
-          <div class="activity-icon" style="background:rgba(232,213,183,0.3); color:#a08050;">
-            <i class="fa-solid fa-water"></i>
-          </div>
-          <div class="activity-info">
-            <h3>Kayaking with Wilsons</h3>
-            <p>World-class sea kayaking with Abel Tasman's premium operator. Half-day to multi-day adventures — family-owned, 8 generations local. Equipment provided.</p>
-          </div>
-        </div>
-
-        <div class="activity-card">
-          <div class="activity-icon icon-ocean">
-            <i class="fa-solid fa-ship"></i>
-          </div>
-          <div class="activity-info">
-            <h3>Vista Cruise</h3>
-            <p>Scenic cruise along the coast — granite cliffs, hidden coves, and wildlife. Includes beach stop. Rated "incredibly spectacular" by visitors.</p>
-          </div>
-        </div>
-
-        <div class="activity-card">
-          <div class="activity-icon icon-sage">
-            <i class="fa-solid fa-taxi"></i>
-          </div>
-          <div class="activity-info">
-            <h3>Water Taxi</h3>
-            <p>Hop between beaches up and down the coast. Drop at remote shores — Anchorage, Torrent Bay, Awaroa. Flexible, independent exploration.</p>
-          </div>
-        </div>
-
-        <div class="activity-card">
-          <div class="activity-icon" style="background:rgba(232,213,183,0.3); color:#a08050;">
-            <i class="fa-solid fa-fish"></i>
-          </div>
-          <div class="activity-info">
-            <h3>Fishing & Diving</h3>
-            <p>Golden Bay offers excellent fishing from the wharf or charter a boat. Clear waters make for great snorkelling and diving.</p>
-          </div>
-        </div>
-
-
-        <div class="activity-card">
-          <div class="activity-icon" style="background:rgba(232,213,183,0.3); color:#a08050;">
-            <i class="fa-solid fa-tree"></i>
-          </div>
-          <div class="activity-info">
-            <h3>Nature & Wildlife</h3>
-            <p>Spot seals at Cape Farewell, birdlife in forest reserves, and dolphins from the coast. The Abel Tasman Birdsong project is restoring native bird populations.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-    <!-- ─── ACCOMMODATION ─────────────────────────────────── -->
-  <section class="section" id="accommodation">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Book a Stay</span>
-        <h2>Rest, recharge, repeat</h2>
-        <p>Pohara and the surrounding Golden Bay villages offer accommodation for every style and budget.</p>
-      </div>
-      <div class="card-grid">
-
-        <div class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80')"></div>
-          <div class="card-body">
-            <h3>Holiday Homes & Baches</h3>
-            <p>Classic Kiwi holiday homes with sea views, private gardens, and all the comforts for a week (or two) at the beach.</p>
-            <a href="#contact" class="btn btn-sand" style="font-size:0.8rem; padding:0.5rem 1.25rem;">View Options</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80')"></div>
-          <div class="card-body">
-            <h3>Camping & Holiday Parks</h3>
-            <p>Wake up to birdsong and the smell of the sea. Pohara's holiday parks and freedom camping spots are legendary.</p>
-            <a href="#contact" class="btn btn-sand" style="font-size:0.8rem; padding:0.5rem 1.25rem;">View Options</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80')"></div>
-          <div class="card-body">
-            <h3>Motels & B&Bs</h3>
-            <p>Quality motels and welcoming bed & breakfasts — perfect for couples and travellers wanting comfort and local knowledge.</p>
-            <a href="#contact" class="btn btn-sand" style="font-size:0.8rem; padding:0.5rem 1.25rem;">View Options</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── HIGHLIGHTS ───────────────────────────────────── -->
-
-  <!-- ─── HOSPITALITY ───────────────────────────────────── -->
-  
-
-  <!-- ─── GETTING HERE / CONTACT ─────────────────────────── -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Book a Stay</span>
-        <h2>Getting to Pohara</h2>
-        <p>Pohara is an easy drive from Nelson and well signposted from the top of the South Island.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div>
-          <div class="contact-info-card" style="background: var(--cream); border: 1px solid rgba(0,0,0,0.08);">
-            <div class="contact-item">
-              <i class="fa-solid fa-location-dot" style="background: rgba(26,74,110,0.1); color: var(--ocean);"></i>
-              <div>
-                <h4 style="color: var(--ocean);">Location</h4>
-                <p>Pohara, Golden Bay<br />South Island, New Zealand</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fa-solid fa-car" style="background: rgba(26,74,110,0.1); color: var(--ocean);"></i>
-              <div>
-                <h4 style="color: var(--ocean);">By Car</h4>
-                <p>2 hours from Nelson via SH60 through the Rai Valley. 45 min from Takaka. Well graded roads — 2WD accessible year-round.</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fa-solid fa-plane" style="background: rgba(26,74,110,0.1); color: var(--ocean);"></i>
-              <div>
-                <h4 style="color: var(--ocean);">By Air</h4>
-                <p>Fly to Nelson Airport, then hire a car for the scenic 2-hour drive to Pohara.</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fa-solid fa-water" style="background: rgba(26,74,110,0.1); color: var(--ocean);"></i>
-              <div>
-                <h4 style="color: var(--ocean);">By Ferry</h4>
-                <p>The ferry from the North Island arrives in Picton — a scenic 3-hour drive south to Nelson, then up to Pohara.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div style="background: var(--ocean); border-radius: var(--radius); padding: 2rem; height: 100%;">
-            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.4rem;">Need local advice?</h3>
-            <p style="color: rgba(255,255,255,0.85); margin-bottom: 1.5rem;">
-              The team at the Pohara i-SITE and local operators are happy to help with trip planning, bookings, and local knowledge.
-            </p>
-            <div class="contact-item">
-              <i class="fa-solid fa-info-circle" style="background: rgba(255,255,255,0.15); color: var(--sand);"></i>
-              <div>
-                <h4 style="color: var(--sand);">Golden Bay i-SITE</h4>
-                <p>Takaka — for all local info, bookings &amp;DOC advice</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fa-solid fa-phone" style="background: rgba(255,255,255,0.15); color: var(--sand);"></i>
-              <div>
-                <h4 style="color: var(--sand);">Pohara Ratepayers</h4>
-                <p>Contact the Pohara community for local events and updates</p>
-              </div>
-            </div>
-            <div class="contact-item" style="margin-bottom: 0;">
-              <i class="fa-solid fa-envelope" style="background: rgba(255,255,255,0.15); color: var(--sand);"></i>
-              <div>
-                <h4 style="color: var(--sand);">Email Us</h4>
-                <p>[your-email@pohara.co.nz]</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -1291,20 +959,20 @@
       <div>
         <h4>Explore</h4>
         <div class="footer-links">
-          <a href="#about">About Pohara</a>
-          <a href="booking.html">Book a Stay</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#activities">Activities</a>
-          <a href="#accommodation">Accommodation</a>
-          <a href="#highlights">Highlights</a>
-          <a href="#hospitality">Local Hospitality</a>
+          <a href="index.html#about">About Pohara</a>
+          <a href="#booking">Book a Stay</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#activities">Activities</a>
+          <a href="index.html#accommodation">Accommodation</a>
+          <a href="index.html#highlights">Highlights</a>
+          <a href="index.html#hospitality">Local Hospitality</a>
         </div>
       </div>
       <div>
         <h4>Plan</h4>
         <div class="footer-links">
-          <a href="#contact">Getting Here</a>
-          <a href="#contact">Local Contacts</a>
+          <a href="index.html#contact">Getting Here</a>
+          <a href="index.html#contact">Local Contacts</a>
           <a href="https://www.abel Tasman.co.nz" target="_blank" rel="noopener">Abel Tasman Info</a>
           <a href="https://www.goldenbay.co.nz" target="_blank" rel="noopener">Golden Bay Tourism</a>
           <a href="https://www.doc.govt.nz" target="_blank" rel="noopener">DOC NZ</a>
