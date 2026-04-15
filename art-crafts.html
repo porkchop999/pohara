@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Art & Crafts — Pohara, Golden Bay</title>
+  <meta name="description" content="A local guide to galleries, sculpture, and handmade work around Pohara and Takaka for visitors exploring Golden Bay." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ocean:#1a4a6e; --ocean-lt:#2a6a8e; --sand:#e8d5b7; --sand-lt:#f5ead8; --sage:#7a9e7e;
+      --cream:#faf8f5; --charcoal:#2d3436; --stone:#636e72; --white:#ffffff;
+      --shadow:0 4px 20px rgba(0,0,0,0.08); --shadow-md:0 10px 30px rgba(0,0,0,0.12);
+      --radius:12px; --font-head:'Quicksand', -apple-system, sans-serif; --font-body:'Lato', -apple-system, sans-serif;
+    }
+    body { font-family: var(--font-body); color: var(--charcoal); background: var(--cream); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    h1,h2,h3,h4 { font-family: var(--font-head); line-height: 1.15; color: var(--charcoal); }
+    p { color: var(--stone); margin-bottom: 1rem; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.06); transition: box-shadow 0.3s ease; }
+    .nav.scrolled { box-shadow: var(--shadow); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: inline-flex; align-items: center; justify-content: center; color: var(--ocean); }
+    .nav-logo svg { width: 46px; height: 46px; display: block; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--stone); }
+    .nav-links a:hover { color: var(--ocean); }
+    .nav-cta { background: var(--ocean); color: var(--white) !important; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 700; }
+    .nav-toggle { display: none; background: none; border: none; font-size: 1.4rem; color: var(--charcoal); }
+    .hero { padding: 8.5rem 2rem 4rem; background: linear-gradient(135deg, rgba(26,74,110,0.96), rgba(42,106,142,0.92)); color: var(--white); }
+    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    .hero-badge { display: inline-block; margin-bottom: 1rem; padding: 0.35rem 0.8rem; border-radius: 999px; background: rgba(255,255,255,0.14); color: var(--sand); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); color: var(--white); margin-bottom: 1rem; max-width: 10ch; }
+    .hero p { color: rgba(255,255,255,0.86); max-width: 60ch; font-size: 1.05rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.75rem; }
+    .btn { display: inline-block; padding: 0.8rem 1.6rem; border-radius: 999px; font-weight: 700; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+    .btn:active { transform: translateY(-1px) scale(0.98); }
+    .btn-primary { background: var(--sand); color: var(--charcoal); }
+    .btn-primary:hover { box-shadow: var(--shadow-md); }
+    .btn-outline { border: 1px solid rgba(255,255,255,0.35); color: var(--white); }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); }
+    .section { padding: 4rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-header { max-width: 720px; margin-bottom: 2.5rem; }
+    .section-label { display: block; margin-bottom: 0.5rem; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); font-weight: 700; }
+    .section-header h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 0.8rem; }
+    .intro-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: start; }
+    .note-box, .tips-box, .place-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05); }
+    .note-box, .tips-box { padding: 1.6rem; }
+    .tips-box ul { padding-left: 1.1rem; color: var(--stone); }
+    .tips-box li { margin-bottom: 0.7rem; }
+    .places-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+    .place-card { padding: 1.6rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .place-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.32rem 0.7rem; border-radius: 999px; background: var(--sand-lt); color: var(--ocean); font-size: 0.78rem; font-weight: 700; }
+    .place-card h3 { font-size: 1.35rem; }
+    .place-card p { margin-bottom: 0; }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.35rem; }
+    .link-btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.72rem 1rem; border-radius: 999px; background: var(--ocean); color: var(--white); font-size: 0.92rem; font-weight: 700; }
+    .link-btn.secondary { background: transparent; color: var(--ocean); border: 1px solid rgba(26,74,110,0.18); }
+    .footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer h3, .footer h4 { color: var(--white); }
+    .footer-brand p { max-width: 280px; font-size: 0.92rem; }
+    .footer-links { display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { max-width: 1200px; margin: 1.5rem auto 0; display: flex; justify-content: space-between; gap: 1rem; }
+    @media (max-width: 900px) { .intro-grid, .places-grid, .footer-inner { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .hero { padding-top: 7.5rem; }
+      .footer-bottom { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Pohara home">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <circle cx="44" cy="18" r="8" fill="#E8D5B7"/>
+          <path d="M10 38C15 34 20 34 25 38C30 42 35 42 40 38C45 34 50 34 55 38" stroke="#1A4A6E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 46C14 42 20 42 26 46C32 50 38 50 44 46C50 42 56 42 60 46" stroke="#2A6A8E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 30L28 20L36 26L44 18" stroke="#7A9E7E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="booking.html">Book</a>
+        <a href="index.html#activities">Activities</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#hospitality">Local</a>
+        <a href="booking.html" class="nav-cta">Book a Stay</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Local makers</div>
+      <h1>Art, galleries and handmade finds</h1>
+      <p>Golden Bay has a strong independent creative streak. This page gives visitors an on-site starting point for galleries, sculpture, and local makers around Pohara and Takaka before they decide where to click next.</p>
+      <div class="hero-actions">
+        <a href="#places" class="btn btn-primary">See creative picks</a>
+        <a href="index.html#hospitality" class="btn btn-outline">Back to homepage</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container intro-grid">
+      <div class="note-box">
+        <span class="section-label">What to expect</span>
+        <h2>Golden Bay has real local character</h2>
+        <p>This is a good area for wandering through galleries, artist studios, sculpture gardens, and small spaces with work you are unlikely to see anywhere else. Takaka gives you the greatest concentration, while the road between Takaka and Pohara has a few memorable stops of its own.</p>
+        <p>Some spaces are seasonal or open by chance, so a quick check before heading out is still worthwhile.</p>
+      </div>
+      <div class="tips-box">
+        <span class="section-label">Quick tips</span>
+        <ul>
+          <li>Takaka is the best base for a casual gallery wander.</li>
+          <li>The road to Pohara includes sculpture and creative studio stops worth watching for.</li>
+          <li>If you are after a broader local arts list, the Golden Bay Arts directory is the best backup.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="places" style="padding-top:0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Recommended stops</span>
+        <h2>Where to start</h2>
+        <p>A short internal guide to some of the more interesting creative stops close to Pohara and Takaka.</p>
+      </div>
+      <div class="places-grid">
+        <article class="place-card">
+          <div class="place-meta">
+            <span class="pill"><i class="fa-solid fa-location-dot"></i>Near Pohara</span>
+            <span class="pill"><i class="fa-solid fa-landmark"></i>Sculpture & gallery</span>
+          </div>
+          <h3>Sculpture705 / Lollokiki</h3>
+          <p>A distinctive art stop on the road between Takaka and Pohara, with contemporary sculpture and multimedia work by Golden Bay artists. Easy to combine with a beach day.</p>
+          <div class="card-actions">
+            <a href="https://www.lollokiki.co.nz/" target="_blank" rel="noopener" class="link-btn">Visit gallery <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://www.lollokiki.co.nz/contact" target="_blank" rel="noopener" class="link-btn secondary">Location details</a>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <div class="place-meta">
+            <span class="pill"><i class="fa-solid fa-location-dot"></i>Takaka</span>
+            <span class="pill"><i class="fa-solid fa-palette"></i>Town gallery stop</span>
+          </div>
+          <h3>Art Vault Takaka</h3>
+          <p>A good starting point in town for contemporary local work and a wider sense of the Golden Bay creative scene, especially if you are already browsing Takaka shops and cafes.</p>
+          <div class="card-actions">
+            <a href="https://www.gbarts.org.nz/artists-profile/art-vault-takaka" target="_blank" rel="noopener" class="link-btn">See profile <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <div class="place-meta">
+            <span class="pill"><i class="fa-solid fa-location-dot"></i>Golden Bay</span>
+            <span class="pill"><i class="fa-solid fa-brush"></i>Broader directory</span>
+          </div>
+          <h3>Golden Bay Arts directory</h3>
+          <p>The best backup when you want more than a few hand-picked options. Useful for finding artists, open studios, local events, and additional gallery spaces across the bay.</p>
+          <div class="card-actions">
+            <a href="https://www.gbarts.org.nz/directory" target="_blank" rel="noopener" class="link-btn">Open directory <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Pohara, Golden Bay</h3>
+        <p>Your guide to one of New Zealand's most beautiful and unspoiled coastal destinations, at the edge of Abel Tasman National Park.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="index.html#about">About Pohara</a>
+          <a href="booking.html">Book a Stay</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#activities">Activities</a>
+          <a href="index.html#highlights">Highlights</a>
+          <a href="index.html#hospitality">Local Hospitality</a>
+        </div>
+      </div>
+      <div>
+        <h4>Plan</h4>
+        <div class="footer-links">
+          <a href="index.html#contact">Getting Here</a>
+          <a href="index.html#contact">Local Contacts</a>
+          <a href="cafes-restaurants.html">Cafes & Restaurants</a>
+          <a href="wineries-cideries.html">Wineries & Cideries</a>
+          <a href="art-crafts.html">Art & Crafts</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Pohara Tourism. All rights reserved.</span>
+      <span>Curated from local and regional sources.</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+      toggle.innerHTML = links.classList.contains('open') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+  </script>
+</body>
+</html>
