@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abel Tasman Coast Track — Pohara, Golden Bay</title>
+  <meta name="description" content="A practical guide to the Abel Tasman Coast Track from a Pōhara base, including the best entry points, day-walk ideas, tide planning, and when to use a water taxi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ocean: #1a4a6e;
+      --ocean-deep: #143a56;
+      --ocean-soft: #dfeaf1;
+      --sand: #e8d5b7;
+      --sand-soft: #f5ead8;
+      --cream: #faf8f5;
+      --white: #ffffff;
+      --charcoal: #2d3436;
+      --stone: #636e72;
+      --border: rgba(26, 74, 110, 0.10);
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-soft: 0 4px 20px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --radius-sm: 12px;
+      --font-head: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max: 1240px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      background: linear-gradient(180deg, #f8f5f0 0%, #faf8f5 38%, #ffffff 100%);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.08; color: var(--charcoal); }
+    p { color: var(--stone); }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .nav.scrolled { box-shadow: var(--shadow-soft); }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ocean);
+    }
+
+    .nav-logo img {
+      display: block;
+      width: auto;
+      height: 44px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--stone);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ocean); }
+
+    .nav-cta {
+      background: var(--ocean);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 700 !important;
+    }
+
+    .nav-cta:hover { background: var(--ocean-deep); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.2rem;
+      background: var(--ocean);
+      color: var(--white);
+      border: 1px solid var(--ocean);
+      box-shadow: 0 12px 28px rgba(26, 74, 110, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--ocean-deep);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(26, 74, 110, 0.22);
+    }
+
+    .page-shell {
+      padding-top: 6.25rem;
+    }
+
+    .hero {
+      min-height: calc(100dvh - 5rem);
+      display: flex;
+      align-items: center;
+      padding: 2rem 0 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .hero-detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .hero-copy {
+      padding-right: 3rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(232, 213, 183, 0.42);
+      color: var(--ocean);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      letter-spacing: -0.05em;
+      max-width: 8ch;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      max-width: 58ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(26, 74, 110, 0.08);
+      color: var(--ocean);
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-visual {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .hero-image-wrap {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.05);
+      display: block;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-panel {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel h2 {
+      font-size: 1.45rem;
+      margin-bottom: 1rem;
+      color: var(--ocean-deep);
+    }
+
+    .hero-panel p {
+      margin-bottom: 1.25rem;
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .signal {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      padding: 1rem;
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .signal i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(26, 74, 110, 0.08);
+      color: var(--ocean);
+    }
+
+    .signal strong {
+      display: block;
+      color: var(--charcoal);
+      margin-bottom: 0.15rem;
+      font-family: var(--font-head);
+      font-size: 1rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(232, 213, 183, 0.42);
+      color: var(--ocean);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+    }
+
+    .section-header p {
+      font-size: 1.05rem;
+      max-width: 58ch;
+    }
+
+    .beach-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .beach-feature,
+    .beach-stack article,
+    .selector-card,
+    .note-card,
+    .safety-card,
+    .summary-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .beach-feature {
+      padding: 2rem;
+      background: var(--white);
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .excursion-feature {
+      margin-top: 1.25rem;
+    }
+
+    .feature-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.05);
+      display: block;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .feature-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .feature-top h3 {
+      font-size: 2rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .feature-tag {
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(26, 74, 110, 0.08);
+      color: var(--ocean);
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .feature-grid div {
+      padding: 0.95rem 1rem;
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .feature-grid strong {
+      display: block;
+      color: var(--ocean);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .beach-stack {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .beach-stack article {
+      padding: 1.4rem;
+      background: var(--white);
+    }
+
+    .stack-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+      display: block;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stack-caption {
+      display: block;
+      margin-top: 0.65rem;
+      color: var(--ocean);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .beach-stack h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 1.35rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .stack-tag {
+      color: var(--ocean);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .support-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+      display: block;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .note-card,
+    .safety-card,
+    .summary-panel,
+    .selector-card {
+      padding: 1.6rem;
+    }
+
+    .note-card h3,
+    .safety-card h3,
+    .selector-card h3,
+    .summary-panel h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .summary-panel {
+      background: var(--white);
+    }
+
+    .selector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .selector-card ul,
+    .safety-card ul,
+    .summary-panel ul {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.95rem;
+    }
+
+    .selector-card li,
+    .safety-card li,
+    .summary-panel li {
+      padding-left: 1.15rem;
+      position: relative;
+      color: var(--stone);
+    }
+
+    .selector-card li::before,
+    .safety-card li::before,
+    .summary-panel li::before {
+      content: "";
+      position: absolute;
+      top: 0.7rem;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ocean);
+    }
+
+    .footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.7);
+      padding: 4rem 2rem 2rem;
+      margin-top: 3rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer h3,
+    .footer h4 { color: var(--white); }
+
+    .footer-brand p {
+      max-width: 280px;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 1.5rem auto 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .section-header,
+      .beach-grid,
+      .support-grid,
+      .selector-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-detail {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding-right: 0;
+      }
+
+      .section-header h2 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container,
+      .nav-inner {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .nav-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1rem; }
+
+      .page-shell {
+        padding-top: 8.5rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 1rem;
+      }
+
+      .hero h1 {
+        max-width: none;
+        font-size: 2.8rem;
+      }
+
+      .feature-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .feature-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Pohara home">
+        <img src="assets/branding/pohara-logo-clean.png" alt="Pohara" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="index.html#activities">Activities</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#hospitality">Local</a>
+        <a href="mailto:info@pohara.co.nz">Contact</a>
+        <a href="booking.html" class="nav-cta">Book a Stay</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-visual">
+          <div class="hero-image-wrap">
+            <img src="assets/photos/_DSC6740-Pano-optimised.jpg" alt="Turquoise water and golden shoreline in Abel Tasman National Park" class="hero-image" />
+          </div>
+        </div>
+        <div class="hero-detail">
+          <div class="hero-copy">
+            <span class="eyebrow"><i class="fa-solid fa-person-hiking" aria-hidden="true"></i> Abel Tasman walking guide</span>
+            <h1>The Coast Track, done sensibly.</h1>
+            <p class="hero-lead">From a Pōhara base, the smartest Abel Tasman day is usually not the biggest one. Tōtaranui is the cleanest northern entry, water taxis unlock the classic one-way sections, and the tide timetable matters more than ambition if you want the day to feel good from start to finish.</p>
+            <div class="hero-meta">
+              <span><i class="fa-solid fa-route" aria-hidden="true"></i> Best day-walk base</span>
+              <span><i class="fa-solid fa-water" aria-hidden="true"></i> Best with water taxi</span>
+              <span><i class="fa-solid fa-clock" aria-hidden="true"></i> Tide timing matters</span>
+            </div>
+          </div>
+          <aside class="hero-panel">
+            <h2>At a glance</h2>
+            <p>These are the track options worth knowing if you want Abel Tasman to work well as a day or half-day outing from Pōhara.</p>
+            <div class="signal-list">
+              <div class="signal">
+                <i class="fa-solid fa-tree" aria-hidden="true"></i>
+                <div>
+                  <strong>Tōtaranui</strong>
+                  The easiest northern track start for beaches, bush, and a proper first taste of the park.
+                </div>
+              </div>
+              <div class="signal">
+                <i class="fa-solid fa-ship" aria-hidden="true"></i>
+                <div>
+                  <strong>Water taxi day</strong>
+                  Best when you want a one-way coastal section instead of an out-and-back.
+                </div>
+              </div>
+              <div class="signal">
+                <i class="fa-solid fa-mountain-sun" aria-hidden="true"></i>
+                <div>
+                  <strong>North-end extension</strong>
+                  Quieter, wilder, and better for stronger walkers who want the less busy side of Abel Tasman.
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Where to start</span>
+            <h2>Tōtaranui is the anchor entry.</h2>
+          </div>
+          <p>If you are staying in Pōhara and want the Coast Track without turning the whole day into logistics, Tōtaranui is usually the best first move. It gives you that immediate Abel Tasman mix of golden sand, native bush, and coastal walking, without the long sense of build-up that some southern starts can have from this side of the bay.</p>
+        </div>
+
+        <div class="beach-grid">
+          <article class="beach-feature">
+            <img src="assets/photos/totaranui-beach.jpg" alt="Golden sand and clear water at Tōtaranui in Abel Tasman National Park" class="feature-image" />
+            <div class="feature-top">
+              <div>
+                <h3>Tōtaranui</h3>
+                <p>Best for a clean first Coast Track day from the Pōhara side of Golden Bay.</p>
+              </div>
+              <span class="feature-tag">Start here first</span>
+            </div>
+            <span class="stack-caption">Supplied track-side image, Tōtaranui</span>
+            <div class="feature-grid">
+              <div>
+                <strong>Walk feel</strong>
+                Immediate beach-and-bush scenery, clear track rhythm, and a proper national-park feel straight away.
+              </div>
+              <div>
+                <strong>Best for</strong>
+                First-timers, day walkers, and anyone who wants a strong Abel Tasman day without overcomplicating it.
+              </div>
+              <div>
+                <strong>What stands out</strong>
+                Golden bays, forest edges, and the sense that the park starts properly the moment you set off.
+              </div>
+              <div>
+                <strong>Good call when</strong>
+                You want a satisfying day on foot and still want enough margin for weather, tide windows, and a relaxed return.
+              </div>
+            </div>
+          </article>
+
+          <div class="beach-stack">
+            <article>
+              <h3>
+                Water taxi section
+                <span class="stack-tag">Best one-way day</span>
+              </h3>
+              <p>If you would rather walk the most scenic section once than reverse your steps, a water taxi day is usually the smarter play. It lets you choose a classic stretch of coast, keep the day visually varied, and avoid finishing with the psychological drag of retracing the same beach and bush again.</p>
+            </article>
+            <article>
+              <img src="assets/photos/IMG_2224-optimised.jpg" alt="Paddleboarder on calm blue water in Golden Bay" class="stack-image" />
+              <h3>
+                Northern end extension
+                <span class="stack-tag">Quieter and longer</span>
+              </h3>
+              <p>The northern end toward Whariwharangi and Wainui has a calmer, more remote energy. It suits walkers who want fewer people, a bigger sense of outing, and more of that edge-of-the-park feeling rather than the busiest postcard sections.</p>
+              <span class="stack-caption">Local coast image, northern Golden Bay mood</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="support-grid">
+          <article class="note-card">
+            <img src="assets/photos/whariwharangi-beach.jpg" alt="Clear sheltered water and pale sand at Whariwharangi Beach" class="support-image" />
+            <h3>Whariwharangi is the quiet reward</h3>
+            <p>If your idea of a great walking day includes a quieter bay and a more tucked-away finish, the northern part of the Coast Track is the one to look at. It feels less like ticking off the famous view and more like finding the softer, quieter version of Abel Tasman.</p>
+            <span class="stack-caption">Supplied coastal image, Whariwharangi</span>
+          </article>
+          <article class="safety-card">
+            <h3>The tide chart is part of the route</h3>
+            <p>On the Coast Track, tides are not a side note. Estuary crossings and section timing can shape the whole day, so the right plan is the one that fits the water as much as the distance. A shorter section that works cleanly with the tide is better than a bigger one that turns stressful late in the day.</p>
+          </article>
+        </div>
+
+        <article class="beach-feature excursion-feature">
+          <img src="assets/photos/IMG_8704-optimised.jpg" alt="Clear shallow water and a swimmer in a sheltered Abel Tasman bay" class="feature-image" />
+          <div class="feature-top">
+            <div>
+              <h3>Classic bay-hopping day</h3>
+              <p>Best for walkers who want the postcard version of Abel Tasman, with swimming stops and beach breaks folded into the track.</p>
+            </div>
+            <span class="feature-tag">Most iconic feel</span>
+          </div>
+          <span class="stack-caption">Local sheltered-bay image, Abel Tasman feel</span>
+          <div class="feature-grid">
+            <div>
+              <strong>Walk feel</strong>
+              Alternating bush shade, open coast, and beaches that make stopping feel like part of the plan, not a distraction from it.
+            </div>
+            <div>
+              <strong>Best for</strong>
+              Couples, mixed-ability groups, and visitors who want the most recognisable Abel Tasman experience in one day.
+            </div>
+            <div>
+              <strong>What stands out</strong>
+              The track never feels far from the sea for long, so the day keeps changing pace and scenery naturally.
+            </div>
+            <div>
+              <strong>Good call when</strong>
+              Weather is settled, the tide window is clear, and you want a walk that still leaves room for a swim or slow lunch stop.
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Choose by mood</span>
+            <h2>Pick the track day that suits the day.</h2>
+          </div>
+          <p>The best Abel Tasman plan depends less on bragging rights and more on who is walking, what the tide is doing, and whether you want a pure walking day or a beach-and-track mix.</p>
+        </div>
+
+        <div class="selector-grid">
+          <article class="selector-card">
+            <h3>For first-timers</h3>
+            <p>Tōtaranui is usually the strongest answer.</p>
+            <ul>
+              <li>Simple northern access from the Pōhara side</li>
+              <li>Immediate payoff in scenery</li>
+              <li>Easy to keep the day at a sensible length</li>
+            </ul>
+          </article>
+          <article class="selector-card">
+            <h3>For the classic one-way walk</h3>
+            <p>Use a water taxi and walk one good coastal section properly.</p>
+            <ul>
+              <li>No need to backtrack the same route</li>
+              <li>Lets you match the best scenery to your energy</li>
+              <li>Usually the most memorable day for visitors</li>
+            </ul>
+          </article>
+          <article class="selector-card">
+            <h3>For stronger walkers</h3>
+            <p>Look at the quieter northern sections and treat it as a proper outing.</p>
+            <ul>
+              <li>Less busy and more remote in feel</li>
+              <li>Better if distance is part of the point</li>
+              <li>Rewards good planning more than spontaneity</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Practical read</span>
+            <h2>What actually helps on the day.</h2>
+          </div>
+          <p>The difference between a great Coast Track day and a draining one is usually timing, transport, and honesty about pace, not raw fitness alone.</p>
+        </div>
+
+        <div class="support-grid">
+          <article class="summary-panel">
+            <h3>Quick rules</h3>
+            <ul>
+              <li>Start with Tōtaranui if you want the clearest north-side Abel Tasman day from Pōhara.</li>
+              <li>Choose a water taxi when you want a one-way walk rather than an out-and-back.</li>
+              <li>Use tide times as a planning tool, not an afterthought.</li>
+              <li>Keep the route shorter if the group wants swims, beach stops, or a relaxed lunch.</li>
+              <li>Save the longer northern mission for the day when weather and energy are both on your side.</li>
+            </ul>
+          </article>
+          <article class="safety-card">
+            <h3>Simple cautions</h3>
+            <ul>
+              <li>Check tide windows before locking in your section.</li>
+              <li>Track times feel longer when heat, sand, and stops add up.</li>
+              <li>Carry more water than you think you need on settled hot days.</li>
+              <li>If transport timing is involved, build margin instead of planning to the minute.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Pohara, Golden Bay</h3>
+        <p>Your guide to one of New Zealand's most beautiful and unspoiled coastal destinations, at the edge of Abel Tasman National Park.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="index.html#about">About Pohara</a>
+          <a href="booking.html">Book a Stay</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#activities">Activities</a>
+          <a href="index.html#highlights">Highlights</a>
+          <a href="index.html#hospitality">Local Hospitality</a>
+        </div>
+      </div>
+      <div>
+        <h4>Plan</h4>
+        <div class="footer-links">
+          <a href="index.html#contact">Getting Here</a>
+          <a href="index.html#contact">Local Contacts</a>
+          <a href="cafes-restaurants.html">Cafes & Restaurants</a>
+          <a href="wineries-cideries.html">Wineries & Cideries</a>
+          <a href="art-crafts.html">Art & Crafts</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Pohara Tourism. All rights reserved.</span>
+      <span>Curated from local and regional sources.</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+      toggle.innerHTML = links.classList.contains('open')
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+  </script>
+</body>
+</html>
