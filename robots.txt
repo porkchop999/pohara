@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://porkchop999.github.io/pohara/sitemap.xml
