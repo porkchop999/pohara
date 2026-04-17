@@ -7,7 +7,25 @@
   <title>Pohara Accommodation and Things To Do in Golden Bay, New Zealand</title>
   <meta name="copyright" content="© pohara.co.nz">
   <meta name="description" content="Plan your stay in Pohara, Golden Bay with local tips on beaches, accommodation, cafes, walks, Abel Tasman day trips and things to do." />
-  <link rel="canonical" href="https://porkchop999.github.io/pohara/" />
+  <link rel="canonical" href="https://pohara.co.nz/" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Pohara",
+      "url": "https://pohara.co.nz/"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Pohara",
+      "url": "https://pohara.co.nz/",
+      "description": "Pohara accommodation and local Golden Bay travel guide with beaches, cafes, walks and Abel Tasman day-trip information.",
+      "areaServed": "Golden Bay, New Zealand"
+    }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1254,16 +1272,9 @@
   // ─── Hero Slideshow ────────────────────────────────
     document.addEventListener('DOMContentLoaded', function() {
       var heroImages = [
-        'IMG_0340 (1)', 'IMG_0477', 'IMG_0932', 'IMG_0945', 'IMG_1493', 'IMG_1554',
-        'IMG_2224', 'IMG_3033', 'IMG_3755', 'IMG_3973', 'IMG_4074', 'IMG_4620',
-        'IMG_4847', 'IMG_5092', 'IMG_5892', 'IMG_7145', 'IMG_8497', 'IMG_8580',
-        'IMG_8687', 'IMG_8722', '_DSC6919', '_DSC6920', '_DSC6977'
+        'IMG_5892', 'IMG_0945', 'IMG_4620', 'IMG_7145', '_DSC6920', '_DSC6977',
+        'IMG_1493'
       ];
-      // Shuffle array (Fisher-Yates)
-      for (var i = heroImages.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var tmp = heroImages[i]; heroImages[i] = heroImages[j]; heroImages[j] = tmp;
-      }
       var carousel = document.getElementById('hero-carousel');
       if (!carousel) return;
       heroImages.forEach(function(img, idx) {
