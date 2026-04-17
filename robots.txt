@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pohara.co.nz/sitemap.xml
+Sitemap: https://porkchop999.github.io/pohara/sitemap.xml
