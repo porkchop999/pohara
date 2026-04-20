@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Pohara Accommodation | Beachfront Stay in Golden Bay, NZ</title>
+  <meta name="copyright" content="© pohara.co.nz">
+  <meta name="description" content="Pohara is one of the best places to stay in Golden Bay for easy beach access, relaxed seaside accommodation, and quick day trips to Abel Tasman National Park. Find out more about this family-friendly base." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://porkchop999.github.io/pohara/about.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Pohara Accommodation | Beachfront Stay in Golden Bay, NZ" />
+  <meta property="og:description" content="Pohara is one of the best places to stay in Golden Bay for easy beach access, relaxed seaside accommodation, and quick day trips to Abel Tasman National Park." />
+  <meta property="og:url" content="https://porkchop999.github.io/pohara/about.html" />
+  <meta property="og:image" content="https://pohara.co.nz/assets/photos/pohara-aerial.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Pohara Accommodation | Beachfront Stay in Golden Bay, NZ" />
+  <meta name="twitter:description" content="Pohara is one of the best places to stay in Golden Bay for easy beach access, relaxed seaside accommodation, and quick day trips to Abel Tasman National Park." />
+  <meta name="twitter:image" content="https://pohara.co.nz/assets/photos/pohara-aerial.jpg" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://porkchop999.github.io/pohara/"},
+        {"@type": "ListItem", "position": 2, "name": "About", "item": "https://porkchop999.github.io/pohara/about.html"}
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Pohara Accommodation — pohara.co.nz",
+      "url": "https://porkchop999.github.io/pohara/",
+      "description": "Pohara accommodation and local Golden Bay travel guide with beaches, cafes, walks and Abel Tasman day-trip information.",
+      "image": "https://porkchop999.github.io/pohara/assets/photos/pohara-beach.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Pohara",
+        "addressLocality": "Takaka",
+        "addressRegion": "Golden Bay",
+        "addressCountry": "NZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -40.8333,
+        "longitude": 172.8667
+      },
+      "priceRange": "$$"
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ocean:     #1a4a6e;
+      --ocean-lt:  #2a6a8e;
+      --sand:      #e8d5b7;
+      --sand-lt:   #f5ead8;
+      --sage:      #7a9e7e;
+      --sage-lt:   #a8c5ab;
+      --cream:     #faf8f5;
+      --charcoal:  #2d3436;
+      --stone:      #636e72;
+      --white:      #ffffff;
+      --shadow:     0 4px 20px rgba(0,0,0,0.08);
+      --shadow-md:  0 8px 30px rgba(0,0,0,0.12);
+      --radius:     12px;
+      --font-head:  'Quicksand', -apple-system, sans-serif;
+      --font-body:  'Lato', -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: var(--ocean); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── NAVIGATION ──────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,248,245,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: var(--shadow); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-logo img { height: 42px; width: auto; }
+    .nav-logo { flex-shrink: 0; }
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: auto;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: var(--sand-lt); text-decoration: none; }
+    .nav-cta {
+      background: var(--ocean) !important;
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem !important;
+    }
+    .nav-cta:hover { background: var(--ocean-lt) !important; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--charcoal);
+      margin-left: auto;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--ocean);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('photos/pohara-aerial.jpg') center/cover no-repeat;
+      opacity: 0.55;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 3rem 1.5rem;
+      max-width: 780px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.1rem;
+    }
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── BUTTONS ──────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--ocean);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--ocean-lt); text-decoration: none; }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.7);
+    }
+    .btn-outline:hover { border-color: var(--white); text-decoration: none; }
+
+    /* ─── SECTIONS ─────────────────────────────────────── */
+    .section { padding: 5rem 1.5rem; }
+    .section-alt { background: var(--sand-lt); }
+    .section-dark { background: var(--charcoal); color: var(--white); }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: 0.6rem;
+    }
+    .section-dark .section-label { color: var(--sand); }
+    .section-header h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .section-header p {
+      font-size: 1.05rem;
+      color: var(--stone);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────────── */
+    .about { background: var(--white); padding: 5rem 1.5rem; }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-text .section-label { margin-bottom: 0.6rem; }
+    .about-text h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .about-text p {
+      color: var(--stone);
+      margin-bottom: 1.1rem;
+      font-size: 1.02rem;
+    }
+    .about-text a { color: var(--ocean); font-weight: 600; }
+    .about-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .about-stat-num {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--ocean);
+      line-height: 1;
+    }
+    .about-stat-label {
+      font-size: 0.8rem;
+      color: var(--stone);
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .about-img-wrap img { width: 100%; height: auto; display: block; }
+    .about-img-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.55);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+    .about-img-tag.blur { color: rgba(255,255,255,0.85); }
+
+    /* ─── LOCATION MAP ─────────────────────────────────── */
+    .location-map {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .location-map iframe { width: 100%; height: 360px; border: none; display: block; }
+    .location-map-caption {
+      background: var(--charcoal);
+      color: var(--white);
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────── */
+    .footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.8);
+      padding: 3.5rem 1.5rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand h3 {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.65; }
+    .footer h4 {
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--sand);
+      margin-bottom: 0.9rem;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); text-decoration: none; }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 1.5rem auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      color: rgba(255,255,255,0.5);
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--white); text-decoration: none; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        padding: 1rem;
+        box-shadow: var(--shadow);
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
+      .nav-links a { padding: 0.65rem 1rem; }
+      .nav-toggle { display: block; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-img-wrap { order: -1; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .about-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ─────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Pohara home">
+        <img src="assets/branding/pohara-logo-clean.png" alt="Pohara" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#hospitality">Local</a>
+        <a href="index.html#activities">Activities</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="search.html">Search</a>
+        <a href="booking.html" class="nav-cta">Book a Stay</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ───────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">About the Region</div>
+      <h1>About Pohara</h1>
+      <p class="hero-sub">
+        Beachfront accommodation, calm swimming beaches, and one of the best bases for exploring Golden Bay and Abel Tasman National Park.
+      </p>
+      <div class="hero-btns">
+        <a href="booking.html" class="btn btn-primary">Book a Stay</a>
+        <a href="index.html" class="btn btn-outline">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ───────────────────────────────────────── -->
+  <section class="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <span class="section-label">About the Region</span>
+        <h2>Coastal charm at the edge of Abel Tasman</h2>
+        <p>
+          Pohara is one of the best places to stay in Golden Bay if you want easy beach access, relaxed seaside accommodation, and quick day trips to Abel Tasman National Park. The village is known for its long sweep of golden sand, calm swimming water, and easy access to walks, cafes, galleries, and local food.
+        </p>
+        <p>
+          From a Pohara base, you can explore the Abel Tasman Coast Track, visit Te Waikoropupu Springs, swim at Ligar Bay and Tata Beach, and discover some of the best things to do in Golden Bay without spending your whole trip in the car. It is a practical, family-friendly base with real local character.
+        </p>
+        <p>
+          Start with the <a href="beach-swimming.html">best beaches around Pohara</a>, add an <a href="abel-tasman-coast-track.html">Abel Tasman day walk from the Golden Bay side</a>, then round out the trip with <a href="nature-wildlife.html">wildlife stops</a>, <a href="cafes-restaurants.html">places to eat in Pohara and Takaka</a>, and a few <a href="art-crafts.html">local gallery and craft stops</a>.
+        </p>
+        <div class="about-stats">
+          <div>
+            <div class="about-stat-num">2h</div>
+            <div class="about-stat-label">From Nelson</div>
+          </div>
+          <div>
+            <div class="about-stat-num">45km</div>
+            <div class="about-stat-label">Abel Tasman Edge</div>
+          </div>
+          <div>
+            <div class="about-stat-num">200+</div>
+            <div class="about-stat-label">Days of sunshine</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-wrap">
+        <img src="photos/pohara-aerial.jpg" alt="Pohara beach aerial view" loading="lazy" decoding="async" />
+        <div class="about-img-tag blur">Pohara, Golden Bay, NZ</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LOCATION ─────────────────────────────────────── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Location</span>
+        <h2>Where to find us</h2>
+        <p>Pohara is an easy drive from Nelson and well signposted from the top of the South Island.</p>
+      </div>
+      <div class="location-map">
+        <iframe
+          title="Map showing Pohara in Golden Bay, New Zealand"
+          src="https://maps.google.com/maps?q=Pohara,+New+Zealand&t=h&z=11&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="location-map-caption">Pohara, Golden Bay, South Island, New Zealand</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ───────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Pohara, Golden Bay</h3>
+        <p>Your guide to one of New Zealand's most beautiful and unspoiled coastal destinations. At the heart of Golden Bay, at the edge of Abel Tasman National Park.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="about.html">About Pohara</a>
+          <a href="booking.html">Book a Stay</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#activities">Activities</a>
+          <a href="index.html#accommodation">Accommodation</a>
+          <a href="index.html#highlights">Highlights</a>
+          <a href="index.html#hospitality">Local Hospitality</a>
+        </div>
+      </div>
+      <div>
+        <h4>Plan</h4>
+        <div class="footer-links">
+          <a href="index.html#contact">Getting Here</a>
+          <a href="https://www.abeltasman.co.nz" target="_blank" rel="noopener">Abel Tasman Info</a>
+          <a href="https://www.doc.govt.nz" target="_blank" rel="noopener">DOC NZ</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 pohara.co.nz. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── SCRIPTS ───────────────────────────────────────── -->
+  <script>
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+      toggle.innerHTML = links.classList.contains('open')
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    // Close mobile nav on link click
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+  </script>
+
+</body>
+</html>
