@@ -245,7 +245,10 @@
 
     .hero-slide {
       position: absolute;
-      inset: 0;
+      top: 0;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
       background-size: cover;
       background-position: center;
       opacity: 0;
@@ -256,7 +259,10 @@
     .hero-bg::after {
       content: '';
       position: absolute;
-      inset: 0;
+      top: 0;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
       background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 100%);
     }
 
