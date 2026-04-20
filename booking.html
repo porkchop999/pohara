@@ -1081,8 +1081,8 @@
   // ─── Hero Slideshow ────────────────────────────────
     document.addEventListener('DOMContentLoaded', function() {
       var heroImages = [
-        'DSC04324.jpeg',
-        'IMG_8046.jpeg'
+        { file: 'DSC04324.jpeg', alt: 'Golden Bay Bach accommodation' },
+        { file: 'IMG_8046.jpeg',  alt: 'Golden Bay Bach accommodation' }
       ];
       for (var i = heroImages.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -1093,7 +1093,9 @@
       heroImages.forEach(function(img, idx) {
         var div = document.createElement('div');
         div.className = 'hero-slide' + (idx === 0 ? ' active' : '');
-        div.style.backgroundImage = "url('bachphotos/" + img + "')";
+        div.style.backgroundImage = "url('bachphotos/" + img.file + "')";
+        div.setAttribute('role', 'img');
+        div.setAttribute('aria-label', img.alt);
         carousel.appendChild(div);
       });
       var slides = document.querySelectorAll('.hero-slide');

@@ -1388,20 +1388,44 @@
   // ─── Hero Slideshow ────────────────────────────────
     document.addEventListener('DOMContentLoaded', function() {
       var heroImages = [
-        'IMG_0340 (1)', 'IMG_0477', 'IMG_0932', 'IMG_0945', 'IMG_1493', 'IMG_1554', 'IMG_2224',
-        'IMG_3033', 'IMG_3755', 'IMG_3973', 'IMG_4074', 'IMG_4620', 'IMG_4847',
-        'IMG_5092', 'IMG_5892', 'IMG_7145', 'IMG_8497', 'IMG_8580', 'IMG_8656',
-        'IMG_8687', 'IMG_8703', 'IMG_8722', '_DSC6919', '_DSC6920', '_DSC6977',
-        'totaranui-beach', 'whariwharangi-beach'
+        { file: 'IMG_0340 (1)',        alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_0477',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_0932',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_0945',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_1493',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_1554',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_2224',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_3033',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_3755',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_3973',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_4074',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_4620',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_4847',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_5092',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_5892',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_7145',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_8497',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_8580',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_8656',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_8687',             alt: 'Golden Bay coastal landscape' },
+        { file: 'IMG_8703',             alt: 'Cape Farewell and Wharariki Beach' },
+        { file: 'IMG_8722',             alt: 'Abel Tasman National Park' },
+        { file: '_DSC6919',            alt: 'Golden Bay coastal landscape' },
+        { file: '_DSC6920',            alt: 'Golden Bay coastal landscape' },
+        { file: '_DSC6977',            alt: 'Golden Bay coastal landscape' },
+        { file: 'totaranui-beach',      alt: 'Totaranui Beach in Abel Tasman' },
+        { file: 'whariwharangi-beach',  alt: 'Wharariki Beach, Cape Farewell' }
       ];
       var mobileHero = window.matchMedia('(max-width: 768px)').matches;
       var carousel = document.getElementById('hero-carousel');
       if (!carousel) return;
       heroImages.forEach(function(img, idx) {
         var div = document.createElement('div');
-        var fileName = img + (mobileHero ? '-optimised-640.webp' : '-optimised.webp');
+        var fileName = img.file + (mobileHero ? '-optimised-640.webp' : '-optimised.webp');
         div.className = 'hero-slide' + (idx === 0 ? ' active' : '');
         div.style.backgroundImage = "url('" + encodeURI('assets/photos/' + fileName) + "')";
+        div.setAttribute('role', 'img');
+        div.setAttribute('aria-label', img.alt);
         carousel.appendChild(div);
       });
       var slides = document.querySelectorAll('.hero-slide');
