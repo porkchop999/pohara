@@ -1419,23 +1419,45 @@
       var mobileHero = window.matchMedia('(max-width: 768px)').matches;
       var carousel = document.getElementById('hero-carousel');
       if (!carousel) return;
-      heroImages.forEach(function(img, idx) {
+
+      // Pre-build slide data (fileName per breakpoint)
+      var slidesData = heroImages.map(function(img) {
+        return {
+          file: img.file + (mobileHero ? '-optimised-640.webp' : '-optimised.webp'),
+          alt: img.alt
+        };
+      });
+
+      // Create slide divs — only first slide gets its image immediately (LCP)
+      slidesData.forEach(function(data, idx) {
         var div = document.createElement('div');
-        var fileName = img.file + (mobileHero ? '-optimised-640.webp' : '-optimised.webp');
         div.className = 'hero-slide' + (idx === 0 ? ' active' : '');
-        div.style.backgroundImage = "url('" + encodeURI('assets/photos/' + fileName) + "')";
+        if (idx === 0) {
+          div.style.backgroundImage = "url('" + encodeURI('assets/photos/' + data.file) + "')";
+        } else {
+          // Store file name for lazy-loading when this slide becomes active
+          div.dataset.src = data.file;
+        }
         div.setAttribute('role', 'img');
-        div.setAttribute('aria-label', img.alt);
+        div.setAttribute('aria-label', data.alt);
         carousel.appendChild(div);
       });
+
       var slides = document.querySelectorAll('.hero-slide');
       if (!slides.length) return;
       var current = 0;
+
       setInterval(function () {
         slides[current].classList.remove('active');
-        setTimeout(function() {
+        setTimeout(function () {
           current = (current + 1) % slides.length;
-          slides[current].classList.add('active');
+          var nextSlide = slides[current];
+          // Lazy-load the image for the incoming slide
+          if (nextSlide.dataset.src) {
+            nextSlide.style.backgroundImage = "url('" + encodeURI('assets/photos/' + nextSlide.dataset.src) + "')";
+            delete nextSlide.dataset.src;
+          }
+          nextSlide.classList.add('active');
         }, 100);
       }, 5000);
     });
