@@ -1351,7 +1351,8 @@
       body += 'Guests: ' + guests + '\nCheck-in: ' + cin + '\nCheck-out: ' + cout + '\n';
       if (msg) body += '\nMessage:\n' + msg;
       var subject = 'Pohara Booking Enquiry: ' + name + ' — ' + cin + ' to ' + cout;
-      var mailto = 'mailto:jamie@jharnett.co.nz?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      var _e1 = 'jamie'; var _e2 = '@'; var _e3 = 'jharnett'; var _e4 = '.co.nz';
+      var mailto = 'mailto:' + _e1 + _e2 + _e3 + _e4 + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       window.location.href = mailto;
     }
 
